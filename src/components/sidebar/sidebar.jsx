@@ -41,7 +41,7 @@ const LogoutButton = styled.div`
 
 const SidebarNav = styled.nav`
   background: #181b3a;
-  width: 280px;
+  width: 300px;
   height: 100%;
   display: flex;
   justify-content: center;
