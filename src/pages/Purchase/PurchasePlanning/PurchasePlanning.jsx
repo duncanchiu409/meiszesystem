@@ -7,6 +7,7 @@ import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
 import format from "date-fns/format";
 import SingleCard from '../../../components/SingleCard';
+import { useTranslation } from "react-i18next";
 
 const PurchasePlanning = () => {
   const [search, setSearch] = useState("");
@@ -14,6 +15,7 @@ const PurchasePlanning = () => {
   const [newDate, setNewDate] = useState("");
   const [newAIncome, setNewAIncome] = useState([]);
   const [newBalance, setNewBalance] = useState([]);
+  const { t } = useTranslation()
   // const [newASale, setNewASale] = useState([]);
   // const [newPASale, setNewPASale] = useState([]);
 
@@ -142,16 +144,16 @@ const PurchasePlanning = () => {
           </div>
 
           <div className="text-end">
-            <h1>Purchase Planning List</h1>
+            <h1>{t('table.Purchase Planning List')}</h1>
             <NavLink to="add" className="btn-create">
-              Create
+              {t('Excel.Create')}
             </NavLink>
             <DownloadTableExcel
               filename="Purchase Planning table"
               sheet="Purchase Planning"
               currentTableRef={tableRef.current}
             >
-              <button className="btn-create"> Export Excel </button>
+              <button className="btn-create"> {t('Excel.Export Excel')} </button>
             </DownloadTableExcel>
 
           </div>

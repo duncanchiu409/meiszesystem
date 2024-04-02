@@ -4,10 +4,12 @@ import { db } from "../../../firebase";
 import { onValue, ref } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
+import { useTranslation } from "react-i18next";
 
 const PO = () => {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
+  const { t } = useTranslation()
   // const [newPQ, setNewPQ] = useState([]);
 
   useEffect(() => {
@@ -43,16 +45,18 @@ const PO = () => {
           </div>
 
           <div className="text-end">
-            <h1>Production Order List</h1>
+            <h1>{t('table.Production Order List')}</h1>
 
             <button to="add" className="btn-create">
-              Import Excel
+              {t('Excel.Import Excel')}
             </button>
             <DownloadTableExcel
               filename="Production Order table"
               sheet="Production Order"
               currentTableRef={tableRef.current}
-            ></DownloadTableExcel>
+            >
+              <button className="btn-create">{t('Excel.Export Excel')}</button>
+            </DownloadTableExcel>
           </div>
           <table className="styled-table" ref={tableRef}>
             <thead>

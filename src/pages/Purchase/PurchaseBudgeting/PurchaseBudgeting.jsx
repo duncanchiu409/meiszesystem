@@ -2,19 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { db } from "../../../firebase";
-import { onValue, ref} from "firebase/database";
+import { onValue, ref } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
-import SingleCard from '../../../components/SingleCard';
+import SingleCard from "../../../components/SingleCard";
+import { useTranslation } from "react-i18next";
 
 const PurchaseBudgeting = () => {
   const [search, setSearch] = useState("");
   const [PurchasePlanning, setPurchasePlanning] = useState([]);
-
+  const { t } = useTranslation();
 
   useEffect(() => {
-
-
     const getPurchasePlanning = () => {
       onValue(ref(db, "PurchasePlanning"), (snapshot) => {
         if (snapshot.val() !== null) {
@@ -26,7 +25,6 @@ const PurchaseBudgeting = () => {
     getPurchasePlanning();
   }, []);
 
-
   const tableRef = useRef(null);
 
   const salesObj = {
@@ -34,17 +32,17 @@ const PurchaseBudgeting = () => {
     totalNumber: `620`,
     icon: "ri-money-dollar-circle-line",
   };
-  
+
   const PurchaseObj = {
     title: "Dec 2023",
     totalNumber: `4000`,
     icon: "ri-briefcase-4-fill",
   };
-  
+
   const StockObj = {
-  title: "Nov 2023",
-  totalNumber: `1100`,
-  icon: "ri-store-3-line", 
+    title: "Nov 2023",
+    totalNumber: `1100`,
+    icon: "ri-store-3-line",
   };
 
   return (
@@ -66,16 +64,15 @@ const PurchaseBudgeting = () => {
           </div>
 
           <div className="text-end">
-            <h1>Purchase Budgeting List</h1>
-            
+            <h1>{t('table.Purchase Budgeting List')}</h1>
+
             <DownloadTableExcel
               filename="Purchase Budgeting table"
               sheet="Purchase Budgeting"
               currentTableRef={tableRef.current}
             >
-              <button className="btn-create"> Export Excel </button>
+              <button className="btn-create"> {t('Excel.Export Excel')} </button>
             </DownloadTableExcel>
-
           </div>
           <table className="styled-table" ref={tableRef}>
             <thead>
@@ -134,8 +131,6 @@ const PurchaseBudgeting = () => {
                         <NavLink to={`update/${id}`} className="btn-edit">
                           Edit
                         </NavLink>
-                        
-                        
                       </td>
                     </tr>
                   );
@@ -143,20 +138,19 @@ const PurchaseBudgeting = () => {
             </tbody>
           </table>
           <div className="dashboard" style={{ textAlign: "center" }}>
-        <div className="dashboard_wrapper" style={{ textAlign: "center" }}>
-          <div className="dashboard_cards" style={{ textAlign: "center" }}>
-        <SingleCard item={salesObj} />
-            
-            <SingleCard item={PurchaseObj} />
-            <SingleCard item={StockObj} />
-            </div>
-        </div>
-      </div>
+            <div className="dashboard_wrapper" style={{ textAlign: "center" }}>
+              <div className="dashboard_cards" style={{ textAlign: "center" }}>
+                <SingleCard item={salesObj} />
 
+                <SingleCard item={PurchaseObj} />
+                <SingleCard item={StockObj} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default PurchaseBudgeting
+export default PurchaseBudgeting;

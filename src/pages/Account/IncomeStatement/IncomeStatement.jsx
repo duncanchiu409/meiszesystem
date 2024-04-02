@@ -5,6 +5,7 @@ import { onValue, ref } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import { format } from "date-fns";
 import "../../../App.css";
+import { useTranslation } from "react-i18next";
 
 const IncomeStatement = () => {
   const [search, setSearch] = useState("");
@@ -14,6 +15,7 @@ const IncomeStatement = () => {
   const [newShowExpense, setNewShowExpense] = useState([]);
   const [newShowBalance, setNewShowBalance] = useState([]);
   const [newDate, setNewDate] = useState("");
+  const { t } = useTranslation()
 
 
   const convertMonth = (month) => {
@@ -189,14 +191,14 @@ const IncomeStatement = () => {
           </div>
 
           <div className="text-end">
-            <h1>Income Statement</h1>
+            <h1>{t('table.Income Statement')}</h1>
 
             <DownloadTableExcel
               filename="Income Statement table"
               sheet="Income Statement"
               currentTableRef={tableRef.current}
             >
-              <button className="btn-create"> Export Excel </button>
+              <button className="btn-create"> {t('Excel.Export Excel')} </button>
             </DownloadTableExcel>
           </div>
           <table className="styled-table" ref={tableRef}>

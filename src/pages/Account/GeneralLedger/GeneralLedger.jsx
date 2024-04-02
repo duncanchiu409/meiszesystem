@@ -5,10 +5,12 @@ import { db } from "../../../firebase";
 import { onValue, ref, remove  } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
+import { useTranslation } from "react-i18next";
 
 const GeneralLedger = () => {
   const [search, setSearch] = useState("");
   const [GeneralLedger, setGeneralLedger] = useState([]);
+  const { t } = useTranslation()
 
   useEffect(() => {
     const getGeneralLedger = () => {
@@ -43,16 +45,16 @@ const GeneralLedger = () => {
           </div>
 
           <div className="text-end">
-            <h1>General Ledger List</h1>
+            <h1>{t('table.General Ledger List')}</h1>
             <NavLink to="add" className="btn-create">
-              Create
+              {t('Excel.Create')}
             </NavLink>
             <DownloadTableExcel
               filename="General Ledger table"
               sheet="General Ledger"
               currentTableRef={tableRef.current}
             >
-              <button className="btn-create"> Export Excel </button>
+              <button className="btn-create"> {t('Excel.Export Excel')} </button>
             </DownloadTableExcel>
           </div>
           <table className="styled-table" ref={tableRef}>

@@ -5,10 +5,12 @@ import { db } from "../../firebase";
 import { onValue, ref, remove } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import "../../App.css";
+import { useTranslation } from "react-i18next";
 
 const Resevation = () => {
     const [search, setSearch] = useState("");
     const [Resevation, setResevation] = useState([]);
+    const { t } = useTranslation()
   
     useEffect(() => {
       const getResevation = () => {
@@ -43,16 +45,16 @@ const Resevation = () => {
             </div>
   
             <div className="text-end">
-              <h1>Resevation List</h1>
+              <h1>{t('table.Resevation List')}</h1>
               <NavLink to="add" className="btn-create">
-                Book
+                {t('Excel.Book')}
               </NavLink>
               <DownloadTableExcel
                 filename="Resevation table"
                 sheet="Resevation"
                 currentTableRef={tableRef.current}
               >
-                <button className="btn-create"> Export Excel </button>
+                <button className="btn-create"> {t('Excel.Export Excel')} </button>
               </DownloadTableExcel>
             </div>
             <table className="styled-table" ref={tableRef}>

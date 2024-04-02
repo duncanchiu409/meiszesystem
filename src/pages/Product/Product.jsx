@@ -5,10 +5,12 @@ import { db } from "../../firebase";
 import { onValue, ref, remove } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import "../../App.css";
+import { useTranslation } from "react-i18next";
 
 const Product = () => {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
+  const { t } = useTranslation()
   // const [newPQ, setNewPQ] = useState([]);
 
   useEffect(() => {
@@ -44,19 +46,19 @@ const Product = () => {
           </div>
 
           <div className="text-end">
-            <h1>Products List</h1>
+            <h1>{t('table.Products List')}</h1>
             <NavLink to="add" className="btn-create">
-              Create
+              {t('Excel.Create')}
             </NavLink>
             <button to="add" className="btn-create">
-              Import Excel
+              {t('Excel.Import Excel')}
             </button>
             <DownloadTableExcel
               filename="Products table"
               sheet="Products"
               currentTableRef={tableRef.current}
             >
-              <button className="btn-create"> Export Excel </button>
+              <button className="btn-create"> {t('Excel.Export Excel')} </button>
             </DownloadTableExcel>
           </div>
           <table className="styled-table" ref={tableRef}>
