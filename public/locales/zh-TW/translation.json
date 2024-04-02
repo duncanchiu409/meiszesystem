@@ -1,0 +1,119 @@
+{
+    "topbar": {
+        "logout": "登出"
+    },
+    "sidebar": {
+        "Financial Management": {
+            "Financial Management": "財務管理",
+            "Invoice": "發票",
+            "Payment Request": "付錢請求",
+            "Financial Statement": "財務報告"  
+        },
+        "Account": {
+            "Account": "帳戶",
+            "Account Payable": "應付帳款",
+            "Account Receivable": "應收帳款",
+            "Income Statement": "收入證明",
+            "Balance Sheet": "資產負債表",
+            "General Ledger": "總帳"
+        },
+        "Sale": {
+            "Sale": "銷售",
+            "Quotation": "引述",
+            "Contract": "合約",
+            "Delivery Note": "送貨單",
+            "Advance Invoice": "預付發票",
+            "Sale Analysis": "銷售分析"
+        },
+        "Customers": {
+            "Customers": "顧客",
+            "Clients": "客戶",
+            "Clients Analysis": "客戶分析",
+            "Membership": "會員資格",
+            "Promotion": "晉升",
+            "Clients Purchase": "客戶購買"
+        },
+        "Products Management": {
+            "Products Management": "產品管理",
+            "Products": "產品",
+            "Production Order": "產品訂單"
+        },
+        "Service Management": {
+            "Service Management": "服務管理",
+            "Service": "服務",
+            "Purchase Service": "購買服務",
+            "Reservation": "預訂"
+        },
+        "Inventory": {
+            "Inventory": "存貨"
+        },
+        "Stock Detail": {
+            "Stock Detail": "庫存詳情"
+        },
+        "Purchase": {
+            "Purchase": "購買",
+            "Purchase Planning": "採購計劃",
+            "Purchase Budgeting": "採購預算",
+            "Purchase Order": "採購訂單",
+            "Supplier": "供應商"
+        },
+        "HR": {
+            "HR": "人力資源",
+            "Staff": "職員",
+            "Salary and MPF Report": "薪資及強積金報告",
+            "Shift Pattern": "換檔模式"
+        },
+        "Reservation": {
+            "Reservation": "預訂",
+            "Calendar": "日曆"
+        },
+        "Share Drive": {
+            "Share Drive": "共享雲端硬碟"
+        },
+        "Setting": {
+            "Setting": "設定",
+            "User Setting": "使用者設定",
+            "Company Information": "公司資訊"
+        }
+    },
+    "Excel": {
+        "Create": "創造",
+        "Export Excel": "匯出Excel",
+        "Import Excel": "導入Excel",
+        "Export PDF": "匯出PDF",
+        "Book": "預訂"
+    },
+    "table": {
+        "Invoice List": "發票清單",
+        "Payment Request List": "付款請求列表",
+        "Financial Statement": "財務報告",
+        "Account Payable List": "應付帳款清單",
+        "Account Receivable List": "應收帳款清單",
+        "Income Statement": "收入證明",
+        "Balance Sheet":"資產負債表",
+        "General Ledger List": "總帳清單",
+        "Quotation List": "報價單",
+        "Contract List": "合約清單",
+        "Delivery Note List": "交貨單清單",
+        "Customers List": "客戶名單",
+        "Member List": "會員名單",
+        "Clients Purchase List": "客戶採購清單",
+        "Products List": "產品列表",
+        "Production Order List": "生產訂單清單",
+        "Service List": "服務清單",
+        "Purchase Service List": "採購服務清單",
+        "Reservation List": "預訂清單",
+        "Inventory List": "庫存清單",
+        "Stock Detail": "庫存詳情",
+        "Purchase Planning List": "採購計畫清單",
+        "Purchase Budgeting List": "採購預算清單",
+        "Purchase Order List": "採購訂單清單",
+        "Suppliers List": "供應商名單",
+        "Staff List": "員工名單",
+        "Salary And MPF Report": "薪資及強積金報告",
+        "Shift Pattern List": "班次模式列表",
+        "Resevation List": "預訂清單",
+        "User List": "使用者列表",
+        "Advance Invoice List": "預付發票清單"
+    }
+}

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
-
+import { useTranslation } from 'react-i18next'
 
 const SidebarLink = styled(NavLink)`
     display: flex;
@@ -43,15 +43,15 @@ const DropdownLink = styled(NavLink)`
 
 const Submenu = ({item}) => {
     const [subnav, setSubnav] = useState(false);
-
     const showSubnav = () => setSubnav(!subnav);
+    const { t } = useTranslation()
 
     return(
         <>
             <SidebarLink to={item.path} onClick={item.subNav && showSubnav}>
                 <div>
                     {item.icon}
-                    <SidebarLabel>{item.title}</SidebarLabel>
+                    <SidebarLabel>{t(item.translation)}</SidebarLabel>
                 </div>
                 <div>
                     {item.subNav && subnav
@@ -65,7 +65,7 @@ const Submenu = ({item}) => {
                 return(
                     <DropdownLink to={item.path} key={index}>
                         {item.icon}
-                        <SidebarLabel>{item.title}</SidebarLabel>
+                        <SidebarLabel>{t(item.translation)}</SidebarLabel>
                     </DropdownLink>
                 )})}        
         </>

@@ -1,0 +1,119 @@
+{
+    "topbar": {
+        "logout": "Logout"
+    },
+    "sidebar": {
+        "Financial Management": {
+            "Financial Management": "Financial Management",
+            "Invoice": "Invoice",
+            "Payment Request": "Payment Request",
+            "Financial Statement": "Financial Statement"  
+        },
+        "Account": {
+            "Account": "Account",
+            "Account Payable": "Account Payable",
+            "Account Receivable": "Account Receivable",
+            "Income Statement": "Income Statement",
+            "Balance Sheet": "Balance Sheet",
+            "General Ledger": "General Ledger"
+        },
+        "Sale": {
+            "Sale": "Sale",
+            "Quotation": "Quotation",
+            "Contract": "Contract",
+            "Delivery Note": "Delivery Note",
+            "Advance Invoice": "Advance Invoice",
+            "Sale Analysis": "Sale Analysis"
+        },
+        "Customers": {
+            "Customers": "Customers",
+            "Clients": "Clients",
+            "Clients Analysis": "Clients Analysis",
+            "Membership": "Membership",
+            "Promotion": "Promotion",
+            "Clients Purchase": "Clients Purchase"
+        },
+        "Products Management": {
+            "Products Management": "Products Management",
+            "Products": "Products",
+            "Production Order": "Production Order"
+        },
+        "Service Management": {
+            "Service Management": "Service Management",
+            "Service": "Service",
+            "Purchase Service": "Purchase Service",
+            "Reservation": "Reservation"
+        },
+        "Inventory": {
+            "Inventory": "Inventory"
+        },
+        "Stock Detail": {
+            "Stock Detail": "Stock Detail"
+        },
+        "Purchase": {
+            "Purchase": "Purchase",
+            "Purchase Planning": "Purchase Planning",
+            "Purchase Budgeting": "Purchase Budgeting",
+            "Purchase Order": "Purchase Order",
+            "Supplier": "Supplier"
+        },
+        "HR": {
+            "HR": "HR",
+            "Staff": "Staff",
+            "Salary and MPF Report": "Salary and MPF Report",
+            "Shift Pattern": "Shift Pattern"
+        },
+        "Reservation": {
+            "Reservation": "Reservation",
+            "Calendar": "Calendar"
+        },
+        "Share Drive": {
+            "Share Drive": "Share Drive"
+        },
+        "Setting": {
+            "Setting": "Setting",
+            "User Setting": "User Setting",
+            "Company Information": "Company Information"
+        }
+    },
+    "Excel": {
+        "Create": "Create",
+        "Export Excel": "Export Excel",
+        "Import Excel": "Import Excel",
+        "Export PDF": "Export PDF",
+        "Book": "Book"
+    },
+    "table": {
+        "Invoice List": "Invoice List",
+        "Payment Request List": "Payment Request List",
+        "Financial Statement": "Financial Statement",
+        "Account Payable List": "Account Payable List",
+        "Account Receivable List": "Account Receivable List",
+        "Income Statement": "Income Statement",
+        "Balance Sheet":"Balance Sheet",
+        "General Ledger List": "General Ledger List",
+        "Quotation List": "Quotation List",
+        "Contract List": "Contract List",
+        "Delivery Note List": "Delivery Note List",
+        "Customers List": "Customers List",
+        "Member List": "Member List",
+        "Clients Purchase List": "Clients Purchase List",
+        "Products List": "Products List",
+        "Production Order List": "Production Order List",
+        "Service List": "Service List",
+        "Purchase Service List": "Purchase Service List",
+        "Reservation List": "Reservation List",
+        "Inventory List": "Inventory List",
+        "Stock Detail": "Stock Detail",
+        "Purchase Planning List": "Purchase Planning List",
+        "Purchase Budgeting List": "Purchase Budgeting List",
+        "Purchase Order List": "Purchase Order List",
+        "Suppliers List": "Suppliers List",
+        "Staff List": "Staff List",
+        "Salary And MPF Report": "Salary And MPF Report",
+        "Shift Pattern List": "Shift Pattern List",
+        "Resevation List": "Resevation List",
+        "User List": "User List",
+        "Advance Invoice List": "Advance Invoice List"
+    }
+}

@@ -13,6 +13,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 
 const FinancialStatement = () => {
   const [search, setSearch] = useState("");
@@ -23,7 +24,7 @@ const FinancialStatement = () => {
   const [newShowExpense, setNewShowExpense] = useState([]);
   const [newShowBalance, setNewShowBalance] = useState([]);
   const [newDate, setNewDate] = useState("");
-
+  const { t } = useTranslation()
 
   const convertMonth = (month) => {
     if (month === "01") {
@@ -221,16 +222,16 @@ const FinancialStatement = () => {
           </div>
 
           <div className="text-end">
-            <h1>Financial Statement</h1>
+            <h1>{t('table.Financial Statement')}</h1>
             <NavLink to="add" className="btn-create">
-              Create
+              {t('Excel.Create')}
             </NavLink>
             <DownloadTableExcel
               filename="Financial Statement table"
               sheet="Financial Statement"
               currentTableRef={tableRef.current}
             >
-              <button className="btn-create"> Export Excel </button>
+              <button className="btn-create"> {t('Excel.Export Excel')} </button>
             </DownloadTableExcel>
           </div>
           <table className="styled-table" ref={tableRef}>

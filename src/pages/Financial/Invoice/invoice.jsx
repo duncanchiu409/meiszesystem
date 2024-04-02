@@ -5,12 +5,14 @@ import { db, storage } from "../../../firebase";
 import { onValue, ref, remove } from "firebase/database";
 import { getDownloadURL, ref as sRef } from "firebase/storage";
 import { FaSearch } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import "../../../App.css";
 
 const Invoice = () => {
   const [search, setSearch] = useState("");
   const [invoice, setInvoice] = useState([]);
   const [resume, setResume] = useState(null);
+  const { t } = useTranslation()
 
   // const onDeleteById = id =>{
 
@@ -68,19 +70,19 @@ const Invoice = () => {
           </div>
 
           <div className="text-end">
-            <h1>Invoice List</h1>
+            <h1>{ t("table.Invoice List") }</h1>
             <NavLink to="add" className="btn-create">
-              Create
+              {t("Excel.Create")}
             </NavLink>
             <DownloadTableExcel
               filename="Invoice table"
               sheet="Invoice"
               currentTableRef={tableRef.current}
             >
-              <button className="btn-create"> Export Excel </button>
+              <button className="btn-create"> {t("Excel.Export Excel")} </button>
             </DownloadTableExcel>
             <button className="btn-create" onClick={() => openInNewTab(resume)}>
-              Export PDF
+              {t("Excel.Export PDF")}
             </button>
           </div>
           <table className="styled-table" ref={tableRef}>

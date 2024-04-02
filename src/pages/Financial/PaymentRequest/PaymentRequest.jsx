@@ -7,6 +7,7 @@ import { getDownloadURL, ref as sRef } from "firebase/storage";
 import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
 import format from "date-fns/format";
+import { useTranslation } from "react-i18next"; 
 
 const PaymentRequest = () => {
   const [search, setSearch] = useState("");
@@ -16,6 +17,7 @@ const PaymentRequest = () => {
   const [newBalance, setNewBalance] = useState([]);
   const [newASale, setNewASale] = useState([]);
   const [resume, setResume] = useState(null);
+  const { t } = useTranslation()
 
   useEffect(() => {
     setNewDate(format(new Date(), "dd/MM/yyyy"));
@@ -140,19 +142,19 @@ const PaymentRequest = () => {
           </div>
 
           <div className="text-end">
-            <h1>Payment Request List</h1>
+            <h1>{t('table.Payment Request List')}</h1>
             <NavLink to="add" className="btn-create">
-              Create
+              {t("Excel.Create")}
             </NavLink>
             <DownloadTableExcel
               filename="PaymentRequest table"
               sheet="PaymentRequest"
               currentTableRef={tableRef.current}
             >
-              <button className="btn-create"> Export Excel </button>
+              <button className="btn-create"> {t('Excel.Export Excel')} </button>
             </DownloadTableExcel>
             <button className="btn-create" onClick={() => openInNewTab(resume)}>
-              Export PDF
+              {t('Excel.Export PDF')}
             </button>
           </div>
           <table className="styled-table" ref={tableRef}>
