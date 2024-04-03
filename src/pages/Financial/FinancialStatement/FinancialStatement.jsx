@@ -207,9 +207,9 @@ const FinancialStatement = () => {
     <div className="main">
       <div
         className="App"
-        style={{ width: "100%", padding: "100px", height: "1000%" }}
+        style={{ width: "100%", padding: "100px", height: "100%" }}
       >
-        <div style={{ padding: "0px 215px" }} className="container">
+        <div style={{ padding: 'auto' }} className="container">
           <div className="input-wrapper">
             <FaSearch id="search-icon" />
             <input
