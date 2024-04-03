@@ -33,7 +33,7 @@ const Product = () => {
         className="App"
         style={{ width: "100%", padding: "100px", height: "1000px" }}
       >
-        <div style={{ paddingLeft: "200px" }}>
+        <div>
           <div className="input-wrapper">
             <FaSearch id="search-icon" />
             <input
@@ -64,19 +64,19 @@ const Product = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Name</th>
-                <th style={{ textAlign: "center" }}>Bar Code/SKU</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Name')}</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Bar Code')}</th>
                 <th style={{ textAlign: "center" }}>
-                  Model/Detail/Specification
+                {t('Products List.Model')}
                 </th>
-                <th style={{ textAlign: "center" }}>Type</th>
-                <th style={{ textAlign: "center" }}>Other Information</th>
-                <th style={{ textAlign: "center" }}>Acessories</th>
-                <th style={{ textAlign: "center" }}>Module</th>
-                <th style={{ textAlign: "center" }}>Attributes</th>
-                <th style={{ textAlign: "center" }}>Process</th>
-                <th style={{ textAlign: "center" }}>Price</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Type')}</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Other Information')}</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Acessories')}</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Module')}</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Attributes')}</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Process')}</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Price')}</th>
+                <th style={{ textAlign: "center" }}>{t('Products List.Action')}</th>
               </tr>
             </thead>
             <tbody>

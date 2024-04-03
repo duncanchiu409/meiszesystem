@@ -61,16 +61,16 @@ const PO = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Name</th>
-                <th style={{ textAlign: "center" }}>Bar Code/SKU</th>
+                <th style={{ textAlign: "center" }}>{t('Production Order List.Name')}</th>
+                <th style={{ textAlign: "center" }}>{t('Production Order List.Bar Code')}</th>
                 <th style={{ textAlign: "center" }}>
-                  Model/Detail/Specification
+                {t('Production Order List.Model')}
                 </th>
-                <th style={{ textAlign: "center" }}>Type</th>
-                <th style={{ textAlign: "center" }}>Other Information</th>
-                <th style={{ textAlign: "center" }}>Acessories</th>
-                <th style={{ textAlign: "center" }}>Module</th>
-                <th style={{ textAlign: "center" }}>Attributes</th>
+                <th style={{ textAlign: "center" }}>{t('Production Order List.Type')}</th>
+                <th style={{ textAlign: "center" }}>{t('Production Order List.Other Information')}</th>
+                <th style={{ textAlign: "center" }}>{t('Production Order List.Acessories')}</th>
+                <th style={{ textAlign: "center" }}>{t('Production Order List.Module')}</th>
+                <th style={{ textAlign: "center" }}>{t('Production Order List.Attributes')}</th>
               </tr>
             </thead>
             <tbody>

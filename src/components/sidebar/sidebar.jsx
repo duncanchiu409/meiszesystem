@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Outlet, useNavigate } from "react-router-dom";
 import SidebarData from "./sidebardata";
@@ -10,7 +10,9 @@ import { auth } from "../../firebase";
 import logo from "../../images/meisze.png";
 import i18n from "../../i18n";
 import { useTranslation, Trans } from "react-i18next";
-import { Grid } from "@mui/material";
+import { IconButton } from "@mui/material";
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 const lngs = {
   en: {
@@ -22,7 +24,7 @@ const lngs = {
 };
 
 const Nav = styled.div`
-  background: #181b3a;
+  background-color: var(--secondary-color);
   height: 80px;
   display: flex;
   justify-content: flex-end;
@@ -39,7 +41,7 @@ const LogoutButton = styled.div`
 `;
 
 const SidebarNav = styled.div`
-  background: #181b3a;
+  background-color: var(--secondary-color);
   height: 100%;
   width: auto;
   display: flex;
@@ -64,6 +66,7 @@ const Sidebar = () => {
   // const user = vauth.currentUser;
   // window.localStorage.setItem("User", user.email)
   const { t } = useTranslation();
+  const [theme, setTheme] = useState('dark')
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -78,8 +81,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "20% 1fr"}}>
-      <div style={{ width: '100%' }}>
+    <div style={{ display: "grid", gridTemplateColumns: "20% 1fr" }} className={ theme }>
+      <div style={{ width: "100%" }}>
         <SidebarNav>
           {window.localStorage.getItem("User") === "admin@gmail.com" ? (
             <SidebarWrap>
@@ -118,15 +121,20 @@ const Sidebar = () => {
           )}
         </SidebarNav>
       </div>
-      <div style={{ backgroundColor: '#0b0c28' }}>
+      <div style={{ backgroundColor: "var(--primary-color)" }}>
         <Nav>
-          <div style={{ marginRight: "20px", color: "white" }}>
+          <IconButton style={{ marginRight: '20px', color: 'var(--font-color)'}} onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')}>
+            { theme === 'dark' ?  <DarkModeOutlinedIcon/> : <LightModeOutlinedIcon/>}
+          </IconButton>
+          <div
+            style={{ marginRight: "20px", color: "var(--sidebar-font-color)" }}
+          >
             <button
               key={"en"}
               style={{
-                backgroundColor: "#181b3a",
+                backgroundColor: "var(--secondary-color)",
                 border: 0,
-                color: "white",
+                color: "var(--sidebar-font-color)",
                 marginRight: "5px",
                 fontWeight: i18n.resolvedLanguage === "en-US" ? 900 : "normal",
               }}
@@ -140,9 +148,9 @@ const Sidebar = () => {
             <button
               key={"ch"}
               style={{
-                backgroundColor: "#181b3a",
+                backgroundColor: "var(--secondar-color)",
                 border: 0,
-                color: "white",
+                color: "var(--sidebar-font-color)",
                 marginLeft: "5px",
                 fontWeight: i18n.resolvedLanguage === "zh-TW" ? 900 : "normal",
               }}

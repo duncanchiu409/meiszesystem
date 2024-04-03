@@ -1,5 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
+.dark{
+  --primary-color: #0b0c28;
+  --secondary-color: #181b3a;
+  --font-color: #f5f5f5;
+  --hover-color: #632ce4;
+  --drop-down-link-color: #414757;
+  --sidebar-font-color: #e1e9fc;
+}
+
+.light{
+  --secondary-color: #b9ffcf;
+  --primary-color: #e9f1ec;
+  --font-color: black;
+  --hover-color: #80af8f;
+  --drop-down-link-color: #d9dce6;
+  --sidebar-font-color: #009879;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,14 +39,14 @@
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: #181b3a;
+  background-color: var(--secondary-color);
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: 5px;
   border-radius: 10px;
-  background-color: #181b3a;
+  background-color: var(--secondary-color);
 }
 
 /* Handle */

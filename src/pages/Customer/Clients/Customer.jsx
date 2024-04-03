@@ -61,16 +61,16 @@ const Customer = () => {
             <table className="styled-table" ref={tableRef}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: "center" }}>Group</th>
-                  <th style={{ textAlign: "center" }}>Name</th>
-                  <th style={{ textAlign: "center" }}>Gender</th>
-                  <th style={{ textAlign: "center" }}>Address</th>
-                  <th style={{ textAlign: "center" }}>Email</th>
-                  <th style={{ textAlign: "center" }}>Mobile</th>
-                  <th style={{ textAlign: "center" }}>Join Date</th>
-                  <th style={{ textAlign: "center" }}>Follow-Up</th>
-                  <th style={{ textAlign: "center" }}>Source</th>
-                  <th style={{ textAlign: "center" }}>Action</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Group')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Name')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Gender')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Address')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Email')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Mobile')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Join Date')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Follow-Up')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Source')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Customers List.Action')}</th>
                 </tr>
               </thead>
               <tbody>

@@ -61,13 +61,13 @@ const Member = () => {
             <table className="styled-table" ref={tableRef}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: "center" }}>Name</th>
-                  <th style={{ textAlign: "center" }}>Email</th>
-                  <th style={{ textAlign: "center" }}>Mobile</th>
-                  <th style={{ textAlign: "center" }}>Membership Level</th>
-                  <th style={{ textAlign: "center" }}>Join Date</th>
-                  <th style={{ textAlign: "center" }}>End Date</th>
-                  <th style={{ textAlign: "center" }}>Action</th>
+                  <th style={{ textAlign: "center" }}>{t('Member List.Name')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Member List.Email')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Member List.Mobile')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Member List.Membership')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Member List.Join Date')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Member List.End Date')}</th>
+                  <th style={{ textAlign: "center" }}>{t('Member List.Action')}</th>
                 </tr>
               </thead>
               <tbody>

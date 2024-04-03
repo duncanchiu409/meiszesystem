@@ -115,5 +115,154 @@
         "Resevation List": "Resevation List",
         "User List": "User List",
         "Advance Invoice List": "Advance Invoice List"
+    },
+    "Invoice List":{
+        "Invoice no": "Invoice no.",
+        "Date": "Date",
+        "Billed to": "Billed to",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Price": "Price",
+        "Total": "Total",
+        "Status": "Status",
+        "Action": "Action"
+    },
+    "Payment Request List": {
+        "Payment Request no": "Payment Request no.",
+        "Date": "Date",
+        "Payment Request to": "Payment Request to",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Total Amount": "Total Amount",
+        "Status": "Status",
+        "Action": "Action"
+    },
+    "Financial Statement": {
+        "Ref no": "Ref no",
+        "Date": "Date",
+        "Account": "Account",
+        "Item": "Item",
+        "Total": "Total",
+        "Action": "Action"
+    },
+    "Account Payable List": {
+        "Date": "Date",
+        "Description": "Description",
+        "Amount": "Amount",
+        "Action": "Action"
+    },
+    "Account Receivable List": {
+        "Date": "Date",
+        "Description": "Description",
+        "Amount": "Amount",
+        "Action": "Action"
+    },
+    "Income Statement": {
+        "Ref no": "Ref no",
+        "Date": "Date",
+        "Account": "Account",
+        "Item": "Item",
+        "Total": "Total"
+    },
+    "Balance Sheet": {
+        "Date": "Date",
+        "Category Of Account": "Category Of Account",
+        "Description": "Description",
+        "Total": "Total"
+    },
+    "General Ledger List": {
+        "Date": "Date",
+        "Category Of Account": "Category Of Account",
+        "Description": "Description",
+        "Amount": "Amount",
+        "Action": "Action"
+    },
+    "Quotation List": {
+        "Quotation no": "Quotation no",
+        "Date": "Date",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Price": "Price",
+        "Total": "Total",
+        "Action": "Action"
+    },
+    "Contract List": {
+        "Contract no": "Contract no.",
+        "Buyer": "Buyer",
+        "Date": "Date",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Price": "Price",
+        "Total": "Total",
+        "Action": "Action"
+    },
+    "Delivery Note List": {
+        "Delivery Note no": "Delivery Note no.",
+        "Delivery To": "Delivery To",
+        "Date": "Date",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Price": "Price",
+        "Total": "Total",
+        "Action": "Action"
+    },
+    "Advance Invoice List": {
+        "Advance Invoice no": "Advance Invoice no.",
+        "Date": "Date",
+        "Bill to": "Bill to",
+        "Item": "Item",
+        "Total Amount": "Total Amount",
+        "Action": "Action"
+    },
+    "Customers List": {
+        "Group": "Group",
+        "Name": "Name",
+        "Gender": "Gender",
+        "Address": "Address",
+        "Email": "Email",
+        "Mobile": "Mobile",
+        "Join Date": "Join Date",
+        "Follow-Up": "Follow-Up",
+        "Source": "Source",
+        "Action": "Action"
+    },
+    "Member List": {
+        "Name": "Name",
+        "Email": "Email",
+        "Mobile": "Mobile",
+        "Membership": "Membership",
+        "Join Date": "Join Date",
+        "End Date": "End Date",
+        "Action": "Action"
+    },
+    "Clients Purchase List": {
+        "Service": "Service/Product",
+        "Total Price": "Total Price",
+        "Purchased By": "Purchased By",
+        "Remark": "Remark",
+        "Action": "Action"
+    },
+    "Products List": {
+        "Name": "Name",
+        "Bar Code": "Bar Code/SKU",
+        "Model": "Model/Detail/Specification",
+        "Type": "Type",
+        "Other Information": "Other Information",
+        "Acessories": "Acessories",
+        "Module": "Module",
+        "Attributes": "Attributes",
+        "Process": "Process",
+        "Price": "Price",
+        "Action": "Action"
+    },
+    "Production Order List": {
+        "Name": "Name",
+        "Bar Code": "Bar Code/SKU",
+        "Model": "Model/Detail/Specification",
+        "Type": "Type",
+        "Other Information": "Other Information",
+        "Acessories": "Acessories",
+        "Module": "Module",
+        "Attributes": "Attributes"
     }
 }

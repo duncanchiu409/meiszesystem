@@ -237,12 +237,12 @@ const FinancialStatement = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Ref no.</th>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Account</th>
-                <th style={{ textAlign: "center" }}>Item</th>
-                <th style={{ textAlign: "center" }}>Total</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t("Financial Statement.Ref no")}</th>
+                <th style={{ textAlign: "center" }}>{t("Financial Statement.Date")}</th>
+                <th style={{ textAlign: "center" }}>{t("Financial Statement.Amount")}</th>
+                <th style={{ textAlign: "center" }}>{t("Financial Statement.Item")}</th>
+                <th style={{ textAlign: "center" }}>{t("Financial Statement.Total")}</th>
+                <th style={{ textAlign: "center" }}>{t("Financial Statement.Action")}</th>
               </tr>
             </thead>
             <tbody>

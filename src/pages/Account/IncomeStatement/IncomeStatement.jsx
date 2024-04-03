@@ -204,11 +204,11 @@ const IncomeStatement = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Ref no.</th>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Account</th>
-                <th style={{ textAlign: "center" }}>Item</th>
-                <th style={{ textAlign: "center" }}>Total</th>
+                <th style={{ textAlign: "center" }}>{t('Income Statement.Ref no')}</th>
+                <th style={{ textAlign: "center" }}>{t('Income Statement.Date')}</th>
+                <th style={{ textAlign: "center" }}>{t('Income Statement.Account')}</th>
+                <th style={{ textAlign: "center" }}>{t('Income Statement.Item')}</th>
+                <th style={{ textAlign: "center" }}>{t('Income Statement.Total')}</th>
 
               </tr>
             </thead>

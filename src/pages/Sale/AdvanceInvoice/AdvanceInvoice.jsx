@@ -60,12 +60,12 @@ const AdvanceInvoice = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Advance Invoice no.</th>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Bill to</th>
-                <th style={{ textAlign: "center" }}>Item</th>
-                <th style={{ textAlign: "center" }}>Total Amount</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t('Advance Invoice List.Advance Invoice no')}</th>
+                <th style={{ textAlign: "center" }}>{t('Advance Invoice List.Date')}</th>
+                <th style={{ textAlign: "center" }}>{t('Advance Invoice List.Bill to')}</th>
+                <th style={{ textAlign: "center" }}>{t('Advance Invoice List.Item')}</th>
+                <th style={{ textAlign: "center" }}>{t('Advance Invoice List.Total Amount')}</th>
+                <th style={{ textAlign: "center" }}>{t('Advance Invoice List.Action')}</th>
               </tr>
             </thead>
             <tbody>

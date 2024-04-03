@@ -77,14 +77,14 @@ const DeliveryNote = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Delivery Note no.</th>
-                <th style={{ textAlign: "center" }}>Delivery To</th>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Item</th>
-                <th style={{ textAlign: "center" }}>Quantity</th>
-                <th style={{ textAlign: "center" }}>Price</th>
-                <th style={{ textAlign: "center" }}>Total</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t("Delivery Note List.Delivery Note no")}</th>
+                <th style={{ textAlign: "center" }}>{t("Delivery Note List.Delivery To")}</th>
+                <th style={{ textAlign: "center" }}>{t("Delivery Note List.Date")}</th>
+                <th style={{ textAlign: "center" }}>{t("Delivery Note List.Item")}</th>
+                <th style={{ textAlign: "center" }}>{t("Delivery Note List.Quantity")}</th>
+                <th style={{ textAlign: "center" }}>{t("Delivery Note List.Price")}</th>
+                <th style={{ textAlign: "center" }}>{t("Delivery Note List.Total")}</th>
+                <th style={{ textAlign: "center" }}>{t("Delivery Note List.Action")}</th>
               </tr>
             </thead>
             <tbody>

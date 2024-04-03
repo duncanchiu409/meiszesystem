@@ -2,10 +2,11 @@ import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
+import './../sidebar/sidebar.css'
 
 const SidebarLink = styled(NavLink)`
     display: flex;
-    color: #e1e9fc;
+    color: var(--sidebar-font-color);
     justify-content: space-between;
     align-items: center;
     padding: 20px;
@@ -15,8 +16,8 @@ const SidebarLink = styled(NavLink)`
     font-size: 18px;
 
     &:hover{
-        background: #252831;
-        border-left: 4px solid #632ce4;
+        background: var(--hover-color);
+        border-left: 4px solid var(--font-color);
         cursor: pointer;
     }
 `;
@@ -26,17 +27,18 @@ const SidebarLabel = styled.span`
 `;
 
 const DropdownLink = styled(NavLink)`
-    background: #414757;
+    background: var(--drop-down-link-color);
     height: 60px;
     padding-left: 3rem;
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #f5f5f5;
+    color: var(--sidebar-font-color);
     font-size: 18px;
 
     &:hover {
-        background: #632ce4;
+        background-color: var(--hover-color);
+        border-left: 4px solid var(--font-color);
         cursor: pointer;
     }
 `;

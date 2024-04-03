@@ -60,11 +60,11 @@ const ClientsPurchase = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Service/Product</th>
-                <th style={{ textAlign: "center" }}>Total Price</th>
-                <th style={{ textAlign: "center" }}>Purchased By</th>
-                <th style={{ textAlign: "center" }}>remark</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t("Clients Purchase List.Service")}</th>
+                <th style={{ textAlign: "center" }}>{t("Clients Purchase List.Total Price")}</th>
+                <th style={{ textAlign: "center" }}>{t("Clients Purchase List.Purchased By")}</th>
+                <th style={{ textAlign: "center" }}>{t("Clients Purchase List.Remark")}</th>
+                <th style={{ textAlign: "center" }}>{t("Clients Purchase List.Action")}</th>
               </tr>
             </thead>
             <tbody>

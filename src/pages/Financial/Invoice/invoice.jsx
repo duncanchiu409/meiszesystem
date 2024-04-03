@@ -88,15 +88,15 @@ const Invoice = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Invoice no.</th>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Billed to</th>
-                <th style={{ textAlign: "center" }}>Item</th>
-                <th style={{ textAlign: "center" }}>Quantity</th>
-                <th style={{ textAlign: "center" }}>Price</th>
-                <th style={{ textAlign: "center" }}>Total</th>
-                <th style={{ textAlign: "center" }}>Status</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Invoice no")}</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Date")}</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Billed to")}</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Item")}</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Quantity")}</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Price")}</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Total")}</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Status")}</th>
+                <th style={{ textAlign: "center" }}>{t("Invoice List.Action")}</th>
               </tr>
             </thead>
             <tbody>

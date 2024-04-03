@@ -77,13 +77,13 @@ const Quotation = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Quotation no.</th>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Item</th>
-                <th style={{ textAlign: "center" }}>Quantity</th>
-                <th style={{ textAlign: "center" }}>Price</th>
-                <th style={{ textAlign: "center" }}>Total</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t("Quotation List.Quotation no")}</th>
+                <th style={{ textAlign: "center" }}>{t("Quotation List.Date")}</th>
+                <th style={{ textAlign: "center" }}>{t("Quotation List.Item")}</th>
+                <th style={{ textAlign: "center" }}>{t("Quotation List.Quantity")}</th>
+                <th style={{ textAlign: "center" }}>{t("Quotation List.Price")}</th>
+                <th style={{ textAlign: "center" }}>{t("Quotation List.Total")}</th>
+                <th style={{ textAlign: "center" }}>{t("Quotation List.Action")}</th>
               </tr>
             </thead>
             <tbody>

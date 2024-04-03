@@ -60,14 +60,14 @@ const Contract = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Contract no.</th>
-                <th style={{ textAlign: "center" }}>Buyer</th>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Item</th>
-                <th style={{ textAlign: "center" }}>Quantity</th>
-                <th style={{ textAlign: "center" }}>Price</th>
-                <th style={{ textAlign: "center" }}>Total</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t('Contract List.Contract no')}</th>
+                <th style={{ textAlign: "center" }}>{t('Contract List.Buyer')}</th>
+                <th style={{ textAlign: "center" }}>{t('Contract List.Date')}</th>
+                <th style={{ textAlign: "center" }}>{t('Contract List.Item')}</th>
+                <th style={{ textAlign: "center" }}>{t('Contract List.Quantity')}</th>
+                <th style={{ textAlign: "center" }}>{t('Contract List.Price')}</th>
+                <th style={{ textAlign: "center" }}>{t('Contract List.Total')}</th>
+                <th style={{ textAlign: "center" }}>{t('Contract List.Action')}</th>
               </tr>
             </thead>
             <tbody>

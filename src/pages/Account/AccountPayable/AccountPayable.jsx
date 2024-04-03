@@ -60,10 +60,10 @@ const AccountPayable = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Description</th>
-                <th style={{ textAlign: "center" }}>Amount</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t("Account Payable List.Date")}</th>
+                <th style={{ textAlign: "center" }}>{t("Account Payable List.Description")}</th>
+                <th style={{ textAlign: "center" }}>{t("Account Payable List.Amount")}</th>
+                <th style={{ textAlign: "center" }}>{t("Account Payable List.Action")}</th>
               </tr>
             </thead>
             <tbody>

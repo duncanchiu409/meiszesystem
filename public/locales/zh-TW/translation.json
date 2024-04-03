@@ -115,5 +115,154 @@
         "Resevation List": "預訂清單",
         "User List": "使用者列表",
         "Advance Invoice List": "預付發票清單"
+    },
+    "Invoice List":{
+        "Invoice no": "發票號碼",
+        "Date": "日期",
+        "Billed to": "付款人",
+        "Item": "物品",
+        "Quantity": "數量",
+        "Price": "價格",
+        "Total": "全部",
+        "Status": "地位",
+        "Action": "行動"
+    },
+    "Payment Request List": {
+        "Payment Request no": "付款請求編號",
+        "Date": "日期",
+        "Payment Request to": "付款請求至",
+        "Item": "物品",
+        "Quantity": "數量",
+        "Total Amount": "總金額",
+        "Status": "地位",
+        "Action": "行動"
+    },
+    "Financial Statement": {
+        "Ref no": "參考編號",
+        "Date": "日期",
+        "Amount": "金額",
+        "Item": "物品",
+        "Total": "總金額",
+        "Action": "行動"
+    }, 
+    "Account Payable List": {
+        "Date": "日期",
+        "Description": "描述",
+        "Amount": "金額",
+        "Action": "行動"
+    },
+    "Account Receivable List": {
+        "Date": "日期",
+        "Description": "描述",
+        "Amount": "金額",
+        "Action": "行動"
+    },
+    "Income Statement": {
+        "Ref no": "參考編號",
+        "Date": "日期",
+        "Account": "帳戶",
+        "Item": "物品",
+        "Total": "總金額"
+    },
+    "Balance Sheet": {
+        "Date": "日期",
+        "Category Of Account": "帳戶類別",
+        "Description": "描述",
+        "Total": "總金額"
+    },
+    "General Ledger List": {
+        "Date": "日期",
+        "Category Of Account": "帳戶類別",
+        "Description": "描述",
+        "Amount": "金額",
+        "Action": "行動"
+    },
+    "Quotation List": {
+        "Quotation no": "報價編號",
+        "Date": "日期",
+        "Item": "物品",
+        "Quantity": "數量",
+        "Price": "價格",
+        "Total": "總金額",
+        "Action": "行動"
+    },
+    "Contract List": {
+        "Contract no": "合約號碼",
+        "Buyer": "買方",
+        "Date": "日期",
+        "Item": "物品",
+        "Quantity": "數量",
+        "Price": "價格",
+        "Total": "總金額",
+        "Action": "行動"
+    },
+    "Delivery Note List": {
+        "Delivery Note no": "交貨單號",
+        "Delivery To": "送貨至",
+        "Date": "日期",
+        "Item": "物品",
+        "Quantity": "數量",
+        "Price": "價格",
+        "Total": "總金額",
+        "Action": "行動"
+    },
+    "Advance Invoice List": {
+        "Advance Invoice no": "預付發票號碼",
+        "Date": "日期",
+        "Bill to": "記帳到",
+        "Item": "物品",
+        "Total Amount": "總金額",
+        "Action": "行動"
+    },
+    "Customers List": {
+        "Group": "團體",
+        "Name": "姓名",
+        "Gender": "性別",
+        "Address": "地址",
+        "Email": "電子郵件",
+        "Mobile": "手機號碼",
+        "Join Date": "加入日期",
+        "Follow-Up": "跟進",
+        "Source": "來源",
+        "Action": "行動"
+    },
+    "Member List": {
+        "Name": "姓名",
+        "Email": "電子郵件",
+        "Mobile": "手機號碼",
+        "Membership": "會員資格",
+        "Join Date": "加入日期",
+        "End Date": "結束日期",
+        "Action": "行動"
+    },
+    "Clients Purchase List": {
+        "Service": "服務",
+        "Total Price": "總金額",
+        "Purchased By": "購買者",
+        "Remark": "評論",
+        "Action": "行動"
+    },
+    "Products List": {
+        "Name": "姓名",
+        "Bar Code": "條碼/SKU",
+        "Model": "型號/細節/規格",
+        "Type": "類型",
+        "Other Information": "其他資訊",
+        "Acessories": "配件",
+        "Module": "模組",
+        "Attributes": "屬性",
+        "Process": "過程",
+        "Price": "價格",
+        "Action": "行動"
+    },
+    "Production Order List": {
+        "Name": "姓名",
+        "Bar Code": "條碼/SKU",
+        "Model": "型號/細節/規格",
+        "Type": "類型",
+        "Other Information": "其他資訊",
+        "Acessories": "配件",
+        "Module": "模組",
+        "Attributes": "屬性"
     }
 }

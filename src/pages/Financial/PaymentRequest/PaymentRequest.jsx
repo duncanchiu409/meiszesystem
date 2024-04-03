@@ -160,14 +160,14 @@ const PaymentRequest = () => {
           <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>Payment Request no.</th>
-                <th style={{ textAlign: "center" }}>Date</th>
-                <th style={{ textAlign: "center" }}>Payment Request to</th>
-                <th style={{ textAlign: "center" }}>Item</th>
-                <th style={{ textAlign: "center" }}>Quantity</th>
-                <th style={{ textAlign: "center" }}>Total Amount</th>
-                <th style={{ textAlign: "center" }}>Status</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>{t("Payment Request List.Payment Request no")}</th>
+                <th style={{ textAlign: "center" }}>{t("Payment Request List.Date")}</th>
+                <th style={{ textAlign: "center" }}>{t("Payment Request List.Payment Request to")}</th>
+                <th style={{ textAlign: "center" }}>{t("Payment Request List.Item")}</th>
+                <th style={{ textAlign: "center" }}>{t("Payment Request List.Quantity")}</th>
+                <th style={{ textAlign: "center" }}>{t("Payment Request List.Total Amount")}</th>
+                <th style={{ textAlign: "center" }}>{t("Payment Request List.Status")}</th>
+                <th style={{ textAlign: "center" }}>{t("Payment Request List.Action")}</th>
               </tr>
             </thead>
             <tbody>
