@@ -265,6 +265,12 @@
         "Module": "模組",
         "Attributes": "屬性"
     },
+    "Service List": {
+        "Service Name": "服務名稱",
+        "Description": "描述",
+        "Remark": "評論",
+        "Action": "行動"
+    },
     "Table Actions": {
         "actions": "行動",
         "delete": "刪除",

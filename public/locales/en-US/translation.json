@@ -265,6 +265,12 @@
         "Module": "Module",
         "Attributes": "Attributes"
     },
+    "Service List": {
+        "Service Name": "Service Name",
+        "Description": "Description",
+        "Remark": "Remark",
+        "Action": "Action"
+    },
     "Table Actions": {
         "actions": "Actions",
         "delete": "Delete",
