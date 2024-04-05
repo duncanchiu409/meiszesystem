@@ -127,9 +127,8 @@ const PaymentRequest = () => {
     <div className="main">
       <div
         className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
       >
-        <div style={{ padding: "0px 215px" }} className="container">
+        <div className="container">
           <div className="input-wrapper">
             <FaSearch id="search-icon" />
             <input

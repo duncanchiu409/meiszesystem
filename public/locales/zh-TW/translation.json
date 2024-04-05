@@ -77,7 +77,7 @@
         }
     },
     "Excel": {
-        "Create": "創造",
+        "Create": "創造Excel",
         "Export Excel": "匯出Excel",
         "Import Excel": "導入Excel",
         "Export PDF": "匯出PDF",
@@ -124,7 +124,7 @@
         "Quantity": "數量",
         "Price": "價格",
         "Total": "全部",
-        "Status": "地位",
+        "Status": "狀態",
         "Action": "行動"
     },
     "Payment Request List": {
@@ -134,7 +134,7 @@
         "Item": "物品",
         "Quantity": "數量",
         "Total Amount": "總金額",
-        "Status": "地位",
+        "Status": "狀態",
         "Action": "行動"
     },
     "Financial Statement": {
@@ -264,5 +264,11 @@
         "Acessories": "配件",
         "Module": "模組",
         "Attributes": "屬性"
+    },
+    "Table Actions": {
+        "actions": "行動",
+        "delete": "刪除",
+        "edit": "編輯",
+        "view": "看法"
     }
 }

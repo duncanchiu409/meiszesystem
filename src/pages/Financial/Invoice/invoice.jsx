@@ -6,13 +6,174 @@ import { onValue, ref, remove } from "firebase/database";
 import { getDownloadURL, ref as sRef } from "firebase/storage";
 import { FaSearch } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import "../../../App.css";
+import { Box, CssBaseline } from "@mui/material";
+import { bgcolor, height, width } from "@mui/system";
+import { number } from "prop-types";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useNavigate } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+
+const rows = [
+  {
+    id: "049bceb3c7f",
+    img: "https://fastly.picsum.photos/id/1048/200/300.jpg?hmac=0UWwJ_psvsU4JEovhQAStv9fWlVd7reEtF624_vHbbk",
+    bt: "Digital Wave",
+    date: "29/01/2024",
+    item: "E-Commerce",
+    no: "A1234561",
+    price: "1000",
+    quantity: "10",
+    status: "",
+    total: "10000",
+  },
+  {
+    id: "049bceb3c76",
+    img: "https://fastly.picsum.photos/id/1048/200/300.jpg?hmac=0UWwJ_psvsU4JEovhQAStv9fWlVd7reEtF624_vHbbk",
+    bt: "Digital Wave",
+    date: "29/01/2024",
+    item: "E-Commerce",
+    no: "A1234561",
+    price: "1000",
+    quantity: "10",
+    status: "",
+    total: "10000",
+  },
+  {
+    id: "049bceb3c78",
+    img: "https://fastly.picsum.photos/id/1048/200/300.jpg?hmac=0UWwJ_psvsU4JEovhQAStv9fWlVd7reEtF624_vHbbk",
+    bt: "Digital Wave",
+    date: "29/01/2024",
+    item: "E-Commerce",
+    no: "A1234561",
+    price: "1000",
+    quantity: "10",
+    status: "",
+    total: "10000",
+  },
+  {
+    id: "049bceb3c73",
+    img: "https://fastly.picsum.photos/id/1048/200/300.jpg?hmac=0UWwJ_psvsU4JEovhQAStv9fWlVd7reEtF624_vHbbk",
+    bt: "Digital Wave",
+    date: "29/01/2024",
+    item: "E-Commerce",
+    no: "A1234561",
+    price: "1000",
+    quantity: "10",
+    status: "",
+    total: "10000",
+  },
+  {
+    id: "049bceb3c71",
+    img: "",
+    bt: "Digital Wave",
+    date: "29/01/2024",
+    item: "Y-Commerce",
+    no: "A1234562",
+    price: "1000",
+    quantity: "10",
+    status: "",
+    total: "10000",
+  },
+  {
+    id: "049bceb3c72",
+    img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fbuffer.com%2Flibrary%2Ffree-images%2F&psig=AOvVaw101MRSFQs3NpQbu1nQ5CeU&ust=1712387396230000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOiAyqTCqoUDFQAAAAAdAAAAABAE",
+    bt: "Digital Wave",
+    date: "29/01/2024",
+    item: "A-Commerce",
+    no: "A1234563",
+    price: "1000",
+    quantity: "10",
+    status: "",
+    total: "10000",
+  },
+];
 
 const Invoice = () => {
   const [search, setSearch] = useState("");
   const [invoice, setInvoice] = useState([]);
   const [resume, setResume] = useState(null);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const columns = [
+    {
+      field: "no",
+      headerName: t("Invoice List.Invoice no"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "date",
+      headerName: t("Invoice List.Date"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "bt",
+      headerName: t("Invoice List.Billed to"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "item",
+      headerName: t("Invoice List.Item"),
+      flex: 1,
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "quantity",
+      headerName: t("Invoice List.Quantity"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "price",
+      headerName: t("Invoice List.Price"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "total",
+      headerName: t("Invoice List.Total"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "status",
+      headerName: t("Invoice List.Status"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: t("Table Actions.actions"),
+      headerClassName: "custom-container-table-head",
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<VisibilityIcon />}
+          onClick={() => {
+            navigate(`view/${params.id}`);
+          }}
+          label={t("Table Actions.view")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          onClick={() => {
+            navigate(`update/${params.id}`);
+          }}
+          label={t("Table Actions.edit")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          onClick={() => {}}
+          label={t("Table Actions.delete")}
+          showInMenu
+        />,
+      ],
+    },
+  ];
 
   // const onDeleteById = id =>{
 
@@ -41,7 +202,10 @@ const Invoice = () => {
     const getInvoice = () => {
       onValue(ref(db, "Invoice"), (snapshot) => {
         if (snapshot.val() !== null) {
-          setInvoice({ ...snapshot.val() });
+          const obj = snapshot.val();
+          setInvoice(() =>
+            Object.keys(obj).map((key) => ({ id: key, ...obj[key] }))
+          );
         }
       });
     };
@@ -53,54 +217,93 @@ const Invoice = () => {
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-              type="text"
-              className="inputField"
-              placeholder="Search Bar Code"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
+      <div className="App">
+        <div className="container">
+          <div className="text-end">
+            <h1>{t("table.Invoice List")}</h1>
+            <div style={{ display: 'flex', flexDirection: "row" }}>
+              <div className="input-wrapper">
+                <FaSearch id="search-icon" style={{ marginRight: "5px" }} />
+                <input
+                  type="text"
+                  className="inputField"
+                  placeholder="Search Bar Code"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+              </div>
+              <NavLink to="add" className="btn-create">
+                {t("Excel.Create")}
+              </NavLink>
+              <DownloadTableExcel
+                filename="Invoice table"
+                sheet="Invoice"
+                currentTableRef={tableRef.current}
+              >
+                <button className="btn-create">
+                  {" "}
+                  {t("Excel.Export Excel")}{" "}
+                </button>
+              </DownloadTableExcel>
+              <button
+                className="btn-create"
+                onClick={() => openInNewTab(resume)}
+              >
+                {t("Excel.Export PDF")}
+              </button>
+            </div>
           </div>
 
-          <div className="text-end">
-            <h1>{ t("table.Invoice List") }</h1>
-            <NavLink to="add" className="btn-create">
-              {t("Excel.Create")}
-            </NavLink>
-            <DownloadTableExcel
-              filename="Invoice table"
-              sheet="Invoice"
-              currentTableRef={tableRef.current}
-            >
-              <button className="btn-create"> {t("Excel.Export Excel")} </button>
-            </DownloadTableExcel>
-            <button className="btn-create" onClick={() => openInNewTab(resume)}>
-              {t("Excel.Export PDF")}
-            </button>
+          {/* div wtih .custom-container to override the bootstrap css */}
+          <div className="custom-container">
+            <Box sx={{ mt: 1 }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400 }}
+                rows={invoice}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
           </div>
-          <table className="styled-table" ref={tableRef}>
+
+          {/* <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Invoice no")}</th>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Date")}</th>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Billed to")}</th>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Item")}</th>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Quantity")}</th>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Price")}</th>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Total")}</th>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Status")}</th>
-                <th style={{ textAlign: "center" }}>{t("Invoice List.Action")}</th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Invoice no")}
+                </th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Date")}
+                </th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Billed to")}
+                </th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Item")}
+                </th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Quantity")}
+                </th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Price")}
+                </th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Total")}
+                </th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Status")}
+                </th>
+                <th style={{ textAlign: "center" }}>
+                  {t("Invoice List.Action")}
+                </th>
               </tr>
             </thead>
             <tbody>
-              {Object.keys(invoice)
+              {invoice
                 .filter((id) => {
                   return search.toLowerCase() === ""
                     ? invoice[id]
@@ -165,7 +368,7 @@ const Invoice = () => {
                   );
                 })}
             </tbody>
-          </table>
+          </table> */}
         </div>
       </div>
     </div>

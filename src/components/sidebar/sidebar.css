@@ -39,14 +39,14 @@
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: var(--secondary-color);
+  background-color: white;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: 5px;
   border-radius: 10px;
-  background-color: var(--secondary-color);
+  background-color: "white";
 }
 
 /* Handle */

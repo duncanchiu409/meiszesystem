@@ -32,7 +32,7 @@ const PO = () => {
         className="App"
         style={{ width: "100%", padding: "100px", height: "1000px" }}
       >
-        <div style={{ paddingLeft: "200px" }}>
+        <div>
           <div className="input-wrapper">
             <FaSearch id="search-icon" />
             <input

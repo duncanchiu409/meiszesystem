@@ -264,5 +264,11 @@
         "Acessories": "Acessories",
         "Module": "Module",
         "Attributes": "Attributes"
+    },
+    "Table Actions": {
+        "actions": "Actions",
+        "delete": "Delete",
+        "edit": "Edit",
+        "view": "View"
     }
 }

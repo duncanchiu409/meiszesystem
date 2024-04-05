@@ -6,6 +6,8 @@ import { FaSearch } from "react-icons/fa";
 import { format } from "date-fns";
 import "../../../App.css";
 import { useTranslation } from "react-i18next";
+import { Box } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 
 const BalanceSheet = () => {
   const [search, setSearch] = useState("");
@@ -16,6 +18,32 @@ const BalanceSheet = () => {
   const [newShowSE, setNewShowSE] = useState([]);
   const [newDate, setNewDate] = useState("");
   const { t } = useTranslation();
+
+  const columns = [
+    {
+      field: "date",
+      headerName: t("Balance Sheet.Date"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "coa",
+      flex: 0.3,
+      headerName: t("Balance Sheet.Category Of Account"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "description",
+      flex: 1,
+      headerName: t("Balance Sheet.Description"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "amount",
+      flex: 0.3,
+      headerName: t("Balance Sheet.Total"),
+      headerClassName: "custom-container-table-head",
+    }
+  ];
 
   const convertMonth = (month) => {
     if (month === "01") {
@@ -59,7 +87,10 @@ const BalanceSheet = () => {
     const getBS = () => {
       onValue(ref(db, "BalanceSheet"), (snapshot) => {
         if (snapshot.val() !== null) {
-          setBS({ ...snapshot.val() });
+          const obj = snapshot.val();
+          setBS(() =>
+            Object.keys(obj).map((key) => ({ id: key, ...obj[key] }))
+          );
         }
       });
     };
@@ -107,36 +138,50 @@ const BalanceSheet = () => {
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-              type="text"
-              className="inputField"
-              placeholder="Search Bar Code"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
-          </div>
-
+      <div className="App">
+        <div className="container">
           <div className="text-end">
             <h1>{t("table.Balance Sheet")}</h1>
-            <DownloadTableExcel
-              filename="Balance Sheet table"
-              sheet="Balance Sheet"
-              currentTableRef={tableRef.current}
-            >
-              <button className="btn-create">
-                {" "}
-                {t("Excel.Export Excel")}{" "}
-              </button>
-            </DownloadTableExcel>
+            <div className="search-bar">
+              <div className="input-wrapper">
+                <FaSearch id="search-icon" />
+                <input
+                  type="text"
+                  className="inputField"
+                  placeholder="Search Bar Code"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+              </div>
+              <DownloadTableExcel
+                filename="Balance Sheet table"
+                sheet="Balance Sheet"
+                currentTableRef={tableRef.current}
+              >
+                <button className="btn-create">
+                  {" "}
+                  {t("Excel.Export Excel")}{" "}
+                </button>
+              </DownloadTableExcel>
+            </div>
           </div>
-          <table className="styled-table" ref={tableRef}>
+
+          <div className="custom-container">
+            <Box sx={{ mt: 1 }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400 }}
+                rows={BS}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
+          </div>
+
+          {/* <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
                 <th style={{ textAlign: "center" }}>
@@ -174,7 +219,7 @@ const BalanceSheet = () => {
                   );
                 })}
             </tbody>
-          </table>
+          </table> */}
 
           <div
             style={{

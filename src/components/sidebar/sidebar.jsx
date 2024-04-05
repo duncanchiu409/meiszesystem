@@ -93,6 +93,7 @@ const Sidebar = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  padding: '10px'
                 }}
                 alt="logo"
                 src={logo}
