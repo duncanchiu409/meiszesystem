@@ -108,237 +108,264 @@ import Member from "./pages/Customer/Member/Member";
 import AddEditMember from "./pages/Customer/Member/AddEditMember";
 import UpdateMember from "./pages/Customer/Member/UpdateMember";
 import ClientsAnalysis from "./pages/Customer/ClientsAnalysis";
-import i18n from './i18n'
+import i18n from "./i18n";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/mainmeun" element={<Sidebar />}>
-          <Route index element={<Invoice />} />
-          <Route path="financial/invoice" element={<Invoice />} />
-          <Route path="financial/invoice/add" element={<AddEditInvoice />} />
-          <Route
-            path="financial/invoice/update/:id"
-            element={<UpdateInvoice />}
-          />
-          <Route path="financial/invoice/view/:id" element={<ViewInvoice />} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/mainmeun" element={<Sidebar />}>
+            <Route index element={<Invoice />} />
+            <Route path="financial/invoice" element={<Invoice />} />
+            <Route path="financial/invoice/add" element={<AddEditInvoice />} />
+            <Route
+              path="financial/invoice/update/:id"
+              element={<UpdateInvoice />}
+            />
+            <Route
+              path="financial/invoice/view/:id"
+              element={<ViewInvoice />}
+            />
 
-          <Route path="financial/FS" element={<FinancialStatement />} />
-          <Route
-            path="financial/FS/add"
-            element={<AddEditFinancialStatement />}
-          />
-          <Route
-            path="financial/FS/update/:id"
-            element={<UpdateFinancialStatement />}
-          />
-          <Route
-            path="financial/FS/view/:id"
-            element={<ViewFinancialStatement />}
-          />
-          <Route path="financial/FS/buget" element={<AddEditBuget />} />
+            <Route path="financial/FS" element={<FinancialStatement />} />
+            <Route
+              path="financial/FS/add"
+              element={<AddEditFinancialStatement />}
+            />
+            <Route
+              path="financial/FS/update/:id"
+              element={<UpdateFinancialStatement />}
+            />
+            <Route
+              path="financial/FS/view/:id"
+              element={<ViewFinancialStatement />}
+            />
+            <Route path="financial/FS/buget" element={<AddEditBuget />} />
 
-          <Route path="sale/advanceinvoice" element={<AdvanceInvoice />} />
-          <Route
-            path="sale/advanceinvoice/add"
-            element={<AddEditAdvanceInvoice />}
-          />
-          <Route
-            path="sale/advanceinvoice/update/:id"
-            element={<UpdateAdvanceInvoice />}
-          />
-          <Route
-            path="sale/advanceinvoice/view/:id"
-            element={<ViewAdvanceInvoice />}
-          />
+            <Route path="sale/advanceinvoice" element={<AdvanceInvoice />} />
+            <Route
+              path="sale/advanceinvoice/add"
+              element={<AddEditAdvanceInvoice />}
+            />
+            <Route
+              path="sale/advanceinvoice/update/:id"
+              element={<UpdateAdvanceInvoice />}
+            />
+            <Route
+              path="sale/advanceinvoice/view/:id"
+              element={<ViewAdvanceInvoice />}
+            />
 
-          <Route path="sale/contract" element={<Contract />} />
-          <Route path="sale/contract/add" element={<AddEditContract />} />
-          <Route path="sale/contract/update/:id" element={<UpdateContract />} />
-          <Route path="sale/contract/view/:id" element={<ViewContract />} />
+            <Route path="sale/contract" element={<Contract />} />
+            <Route path="sale/contract/add" element={<AddEditContract />} />
+            <Route
+              path="sale/contract/update/:id"
+              element={<UpdateContract />}
+            />
+            <Route path="sale/contract/view/:id" element={<ViewContract />} />
 
-          <Route path="account/accountpayable" element={<AccountPayable />} />
-          <Route
-            path="account/accountpayable/add"
-            element={<AddEditAccountPayable />}
-          />
-          <Route
-            path="account/accountpayable/update/:id"
-            element={<UpdateAccountPayable />}
-          />
-          <Route
-            path="account/accountpayable/view/:id"
-            element={<ViewAccountPayable />}
-          />
+            <Route path="account/accountpayable" element={<AccountPayable />} />
+            <Route
+              path="account/accountpayable/add"
+              element={<AddEditAccountPayable />}
+            />
+            <Route
+              path="account/accountpayable/update/:id"
+              element={<UpdateAccountPayable />}
+            />
+            <Route
+              path="account/accountpayable/view/:id"
+              element={<ViewAccountPayable />}
+            />
 
-          <Route
-            path="account/accountreceivable"
-            element={<AccountReceivable />}
-          />
-          <Route
-            path="account/accountreceivable/add"
-            element={<AddEditAccountReceivable />}
-          />
-          <Route
-            path="account/accountreceivable/update/:id"
-            element={<UpdateAccountReceivable />}
-          />
-          <Route
-            path="account/accountreceivable/view/:id"
-            element={<ViewAccountReceivable />}
-          />
+            <Route
+              path="account/accountreceivable"
+              element={<AccountReceivable />}
+            />
+            <Route
+              path="account/accountreceivable/add"
+              element={<AddEditAccountReceivable />}
+            />
+            <Route
+              path="account/accountreceivable/update/:id"
+              element={<UpdateAccountReceivable />}
+            />
+            <Route
+              path="account/accountreceivable/view/:id"
+              element={<ViewAccountReceivable />}
+            />
 
-          <Route path="account/incomestatement" element={<IncomeStatement />} />
+            <Route
+              path="account/incomestatement"
+              element={<IncomeStatement />}
+            />
 
-          <Route path="account/balancesheet" element={<BalanceSheet />} />
+            <Route path="account/balancesheet" element={<BalanceSheet />} />
 
-          <Route path="account/generalledger" element={<GeneralLedger />} />
-          <Route
-            path="account/generalledger/add"
-            element={<AddEditGeneralLedger />}
-          />
-          <Route
-            path="account/generalledger/update/:id"
-            element={<UpdateGeneralLedger />}
-          />
-          <Route
-            path="account/generalledger/view/:id"
-            element={<ViewGeneralLedger />}
-          />
+            <Route path="account/generalledger" element={<GeneralLedger />} />
+            <Route
+              path="account/generalledger/add"
+              element={<AddEditGeneralLedger />}
+            />
+            <Route
+              path="account/generalledger/update/:id"
+              element={<UpdateGeneralLedger />}
+            />
+            <Route
+              path="account/generalledger/view/:id"
+              element={<ViewGeneralLedger />}
+            />
 
-          <Route path="sale/quotation" element={<Quotation />} />
-          <Route path="sale/quotation/add" element={<AddEditQuotation />} />
-          <Route
-            path="sale/quotation/update/:id"
-            element={<UpdateQuotation />}
-          />
-          <Route path="sale/quotation/view/:id" element={<ViewQuotation />} />
+            <Route path="sale/quotation" element={<Quotation />} />
+            <Route path="sale/quotation/add" element={<AddEditQuotation />} />
+            <Route
+              path="sale/quotation/update/:id"
+              element={<UpdateQuotation />}
+            />
+            <Route path="sale/quotation/view/:id" element={<ViewQuotation />} />
 
-          <Route path="sale/deliverynote" element={<DeliveryNote />} />
-          <Route
-            path="sale/deliverynote/add"
-            element={<AddEditDeliveryNote />}
-          />
-          <Route
-            path="sale/deliverynote/update/:id"
-            element={<UpdateDeliveryNote />}
-          />
-          <Route
-            path="sale/deliverynote/view/:id"
-            element={<ViewDeliveryNote />}
-          />
+            <Route path="sale/deliverynote" element={<DeliveryNote />} />
+            <Route
+              path="sale/deliverynote/add"
+              element={<AddEditDeliveryNote />}
+            />
+            <Route
+              path="sale/deliverynote/update/:id"
+              element={<UpdateDeliveryNote />}
+            />
+            <Route
+              path="sale/deliverynote/view/:id"
+              element={<ViewDeliveryNote />}
+            />
 
-          <Route path="sale/saleanalysis" element={<SaleAnalysis />} />
+            <Route path="sale/saleanalysis" element={<SaleAnalysis />} />
 
-          <Route path="financial/paymentrequest" element={<PaymentRequest />} />
-          <Route
-            path="financial/paymentrequest/add"
-            element={<AddEditPaymentRequest />}
-          />
-          <Route
-            path="financial/paymentrequest/update/:id"
-            element={<UpdatePaymentRequest />}
-          />
-          <Route
-            path="financial/paymentrequest/view/:id"
-            element={<ViewPaymentRequest />}
-          />
+            <Route
+              path="financial/paymentrequest"
+              element={<PaymentRequest />}
+            />
+            <Route
+              path="financial/paymentrequest/add"
+              element={<AddEditPaymentRequest />}
+            />
+            <Route
+              path="financial/paymentrequest/update/:id"
+              element={<UpdatePaymentRequest />}
+            />
+            <Route
+              path="financial/paymentrequest/view/:id"
+              element={<ViewPaymentRequest />}
+            />
 
-          <Route path="customer/clients/" element={<Customer />} />
-          <Route path="customer/clients/add" element={<AddEditCustomer />} />
-          <Route
-            path="customer/clients/update/:id"
-            element={<UpdateCustomer />}
-          />
-          <Route path="customer/clients/view/:id" element={<ViewCustomer />} />
+            <Route path="customer/clients/" element={<Customer />} />
+            <Route path="customer/clients/add" element={<AddEditCustomer />} />
+            <Route
+              path="customer/clients/update/:id"
+              element={<UpdateCustomer />}
+            />
+            <Route
+              path="customer/clients/view/:id"
+              element={<ViewCustomer />}
+            />
 
-          <Route path="customer/member/" element={<Member />} />
-          <Route path="customer/member/add" element={<AddEditMember />} />
-          <Route path="customer/member/update/:id" element={<UpdateMember />} />
+            <Route path="customer/member/" element={<Member />} />
+            <Route path="customer/member/add" element={<AddEditMember />} />
+            <Route
+              path="customer/member/update/:id"
+              element={<UpdateMember />}
+            />
 
-          <Route path="customer/cp/" element={<ClientsPurchase />} />
-          <Route path="customer/cp/add" element={<AddEditClientsPurchase />} />
+            <Route path="customer/cp/" element={<ClientsPurchase />} />
+            <Route
+              path="customer/cp/add"
+              element={<AddEditClientsPurchase />}
+            />
 
-          <Route path="customer/promotion/" element={<Promotion />} />
-          <Route path="customer/ca/" element={<ClientsAnalysis />} />
+            <Route path="customer/promotion/" element={<Promotion />} />
+            <Route path="customer/ca/" element={<ClientsAnalysis />} />
 
-          <Route path="customer/supplier/" element={<Supplier />} />
-          <Route path="customer/supplier/add" element={<AddEditSupplier />} />
-          <Route
-            path="customer/supplier/update/:id"
-            element={<UpdateSupplier />}
-          />
-          <Route path="customer/supplier/view/:id" element={<ViewSupplier />} />
+            <Route path="customer/supplier/" element={<Supplier />} />
+            <Route path="customer/supplier/add" element={<AddEditSupplier />} />
+            <Route
+              path="customer/supplier/update/:id"
+              element={<UpdateSupplier />}
+            />
+            <Route
+              path="customer/supplier/view/:id"
+              element={<ViewSupplier />}
+            />
 
-          <Route path="product" element={<Product />} />
-          <Route path="product/add" element={<AddEditProduct />} />
-          <Route path="product/update/:id" element={<UpdateProduct />} />
-          <Route path="product/view/:id" element={<ViewProduct />} />
-          <Route path="product/po" element={<PO />} />
+            <Route path="product" element={<Product />} />
+            <Route path="product/add" element={<AddEditProduct />} />
+            <Route path="product/update/:id" element={<UpdateProduct />} />
+            <Route path="product/view/:id" element={<ViewProduct />} />
+            <Route path="product/po" element={<PO />} />
 
-          <Route path="service" element={<Service />} />
-          <Route path="service/add" element={<AddEditService />} />
-          <Route path="service/update/:id" element={<UpdateService />} />
-          <Route path="service/view/:id" element={<ViewService />} />
+            <Route path="service" element={<Service />} />
+            <Route path="service/add" element={<AddEditService />} />
+            <Route path="service/update/:id" element={<UpdateService />} />
+            <Route path="service/view/:id" element={<ViewService />} />
 
-          <Route path="service/psp" element={<PSP />} />
-          <Route path="service/psp/add" element={<AddEditPSP />} />
+            <Route path="service/psp" element={<PSP />} />
+            <Route path="service/psp/add" element={<AddEditPSP />} />
 
-          <Route path="inventory" element={<Inventory />} />
-          <Route path="inventory/add" element={<AddEditInventory />} />
-          <Route path="inventory/update/:id" element={<UpdateInventory />} />
-          <Route path="inventory/view/:id" element={<ViewInventory />} />
+            <Route path="inventory" element={<Inventory />} />
+            <Route path="inventory/add" element={<AddEditInventory />} />
+            <Route path="inventory/update/:id" element={<UpdateInventory />} />
+            <Route path="inventory/view/:id" element={<ViewInventory />} />
 
-          <Route path="purchase/pp" element={<PurchasePlanning />} />
-          <Route path="purchase/pp/add" element={<AddEditPurchasePlanning />} />
-          <Route
-            path="purchase/pp/update/:id"
-            element={<UpdatePurchasePlanning />}
-          />
+            <Route path="purchase/pp" element={<PurchasePlanning />} />
+            <Route
+              path="purchase/pp/add"
+              element={<AddEditPurchasePlanning />}
+            />
+            <Route
+              path="purchase/pp/update/:id"
+              element={<UpdatePurchasePlanning />}
+            />
 
-          <Route path="purchase/pb" element={<PurchaseBudgeting />} />
-          <Route
-            path="purchase/pb/update/:id"
-            element={<UpdatePurchaseBudgeting />}
-          />
+            <Route path="purchase/pb" element={<PurchaseBudgeting />} />
+            <Route
+              path="purchase/pb/update/:id"
+              element={<UpdatePurchaseBudgeting />}
+            />
 
-          <Route path="purchase/po" element={<PurchaseOrder />} />
+            <Route path="purchase/po" element={<PurchaseOrder />} />
 
-          <Route path="stockdetail" element={<StockDetail />} />
+            <Route path="stockdetail" element={<StockDetail />} />
 
-          <Route path="HR/staff" element={<Staff />} />
-          <Route path="HR/staff/add" element={<AddEditStaff />} />
-          <Route path="HR/staff/update/:id" element={<UpdateStaff />} />
-          <Route path="HR/staff/view/:id" element={<ViewStaff />} />
+            <Route path="HR/staff" element={<Staff />} />
+            <Route path="HR/staff/add" element={<AddEditStaff />} />
+            <Route path="HR/staff/update/:id" element={<UpdateStaff />} />
+            <Route path="HR/staff/view/:id" element={<ViewStaff />} />
 
-          <Route path="HR/SR" element={<SR />} />
-          <Route path="HR/SR/add" element={<AddEditSR />} />
-          <Route path="HR/SR/update/:id" element={<UpdateSR />} />
-          <Route path="HR/SR/view/:id" element={<ViewSR />} />
+            <Route path="HR/SR" element={<SR />} />
+            <Route path="HR/SR/add" element={<AddEditSR />} />
+            <Route path="HR/SR/update/:id" element={<UpdateSR />} />
+            <Route path="HR/SR/view/:id" element={<ViewSR />} />
 
-          <Route path="HR/SP" element={<SP />} />
-          <Route path="HR/SP/add" element={<AddEditSP />} />
-          <Route path="HR/SP/update/:id" element={<UpdateSP />} />
-          <Route path="HR/SP/view/:id" element={<ViewSP />} />
+            <Route path="HR/SP" element={<SP />} />
+            <Route path="HR/SP/add" element={<AddEditSP />} />
+            <Route path="HR/SP/update/:id" element={<UpdateSP />} />
+            <Route path="HR/SP/view/:id" element={<ViewSP />} />
 
-          <Route path="reservation" element={<Reservation />} />
-          <Route path="reservation/add" element={<AddEditReservation />} />
+            <Route path="reservation" element={<Reservation />} />
+            <Route path="reservation/add" element={<AddEditReservation />} />
 
-          <Route path="sharedrive" element={<ShareDrive />} />
+            <Route path="sharedrive" element={<ShareDrive />} />
 
-          <Route path="calender" element={<Calender />} />
+            <Route path="calender" element={<Calender />} />
 
-          <Route path="setting/us" element={<User />} />
-          <Route path="setting/us/add" element={<AddEditUser />} />
-          <Route path="setting/us/update/:id" element={<UpdateUser />} />
+            <Route path="setting/us" element={<User />} />
+            <Route path="setting/us/add" element={<AddEditUser />} />
+            <Route path="setting/us/update/:id" element={<UpdateUser />} />
 
-          <Route path="setting/ci" element={<CI />} />
-          <Route path="setting/ci/update/:id" element={<UpdateCI />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            <Route path="setting/ci" element={<CI />} />
+            <Route path="setting/ci/update/:id" element={<UpdateCI />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
   );
 }
 

@@ -11,8 +11,10 @@ import logo from "../../images/meisze.png";
 import i18n from "../../i18n";
 import { useTranslation, Trans } from "react-i18next";
 import { IconButton } from "@mui/material";
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import MenuOpenOutlinedIcon from '@mui/icons-material/MenuOpenOutlined';
 
 const lngs = {
   en: {
@@ -66,7 +68,8 @@ const Sidebar = () => {
   // const user = vauth.currentUser;
   // window.localStorage.setItem("User", user.email)
   const { t } = useTranslation();
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState("dark");
+  const [menu, setMenu] = useState(false)
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -81,30 +84,112 @@ const Sidebar = () => {
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "20% 1fr" }} className={ theme }>
-      <div style={{ width: "100%" }}>
-        <SidebarNav>
-          {window.localStorage.getItem("User") === "admin@gmail.com" ? (
-            <SidebarWrap>
-              <img
-                style={{
-                  height: "80px",
-                  color: "#e1e9fc",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: '10px'
-                }}
-                alt="logo"
-                src={logo}
-              />
-              {SidebarData.map((item, index) => {
-                return <Submenu item={item} key={index} />;
-              })}
-            </SidebarWrap>
+    <div
+      className={theme}
+      style={{
+        backgroundColor: "var(--primary-color)",
+        height: "inherit",
+        minHeight: "100%",
+      }}
+    >
+      <Nav>
+        <div className="logo-container">
+          <IconButton style={{ paddingLeft: "20px", paddingRight: "20px", color: "var(--font-color)" }} onClick={() => { setMenu((prev) => !prev) }}>{
+            menu ? <MenuOutlinedIcon/> : <MenuOpenOutlinedIcon/>
+          }</IconButton>
+          <img
+            style={{
+              height: "80px",
+              width: "calc(80px * 5)",
+              color: "#e1e9fc",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            alt="logo"
+            src={logo}
+          />
+        </div>
+
+        <IconButton
+          style={{ marginRight: "20px", color: "var(--font-color)" }}
+          onClick={() =>
+            theme === "dark" ? setTheme("light") : setTheme("dark")
+          }
+        >
+          {theme === "dark" ? (
+            <DarkModeOutlinedIcon />
           ) : (
-            <SidebarWrap>
-              <img
+            <LightModeOutlinedIcon />
+          )}
+        </IconButton>
+        <div
+          style={{ marginRight: "20px", color: "var(--sidebar-font-color)" }}
+        >
+          <button
+            key={"en"}
+            style={{
+              backgroundColor: "var(--secondary-color)",
+              border: 0,
+              color: "var(--sidebar-font-color)",
+              marginRight: "5px",
+              fontWeight: i18n.resolvedLanguage === "en-US" ? 900 : "normal",
+            }}
+            onClick={() => {
+              i18n.changeLanguage("en-US");
+            }}
+          >
+            {lngs["en"].nativeName}
+          </button>
+          |
+          <button
+            key={"ch"}
+            style={{
+              backgroundColor: "var(--secondar-color)",
+              border: 0,
+              color: "var(--sidebar-font-color)",
+              marginLeft: "5px",
+              fontWeight: i18n.resolvedLanguage === "zh-TW" ? 900 : "normal",
+            }}
+            onClick={() => {
+              i18n.changeLanguage("zh-TW");
+            }}
+          >
+            {lngs["ch"].nativeName}
+          </button>
+        </div>
+        <LogoutButton>
+          <button className="btn btn-success" onClick={(e) => handleClick(e)}>
+            {t("topbar.logout")}
+          </button>
+        </LogoutButton>
+      </Nav>
+      <div
+        className={ `${menu ? "hide-sidebar" : ""} content` }
+      >
+        <div style={{ width: "100%" }}>
+          <SidebarNav>
+            {window.localStorage.getItem("User") === "admin@gmail.com" ? (
+              <SidebarWrap>
+                {/* <img
+                style={{
+                  height: "80px",
+                  color: "#e1e9fc",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "10px",
+                }}
+                alt="logo"
+                src={logo}
+              /> */}
+                {SidebarData.map((item, index) => {
+                  return <Submenu item={item} key={index} />;
+                })}
+              </SidebarWrap>
+            ) : (
+              <SidebarWrap>
+                {/* <img
                 style={{
                   height: "80px",
                   color: "#e1e9fc",
@@ -114,61 +199,17 @@ const Sidebar = () => {
                 }}
                 alt="logo"
                 src={logo}
-              />
-              {SidebarDataPublic.map((item, index) => {
-                return <Submenu item={item} key={index} />;
-              })}
-            </SidebarWrap>
-          )}
-        </SidebarNav>
-      </div>
-      <div style={{ backgroundColor: "var(--primary-color)" }}>
-        <Nav>
-          <IconButton style={{ marginRight: '20px', color: 'var(--font-color)'}} onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')}>
-            { theme === 'dark' ?  <DarkModeOutlinedIcon/> : <LightModeOutlinedIcon/>}
-          </IconButton>
-          <div
-            style={{ marginRight: "20px", color: "var(--sidebar-font-color)" }}
-          >
-            <button
-              key={"en"}
-              style={{
-                backgroundColor: "var(--secondary-color)",
-                border: 0,
-                color: "var(--sidebar-font-color)",
-                marginRight: "5px",
-                fontWeight: i18n.resolvedLanguage === "en-US" ? 900 : "normal",
-              }}
-              onClick={() => {
-                i18n.changeLanguage("en-US");
-              }}
-            >
-              {lngs["en"].nativeName}
-            </button>
-            |
-            <button
-              key={"ch"}
-              style={{
-                backgroundColor: "var(--secondar-color)",
-                border: 0,
-                color: "var(--sidebar-font-color)",
-                marginLeft: "5px",
-                fontWeight: i18n.resolvedLanguage === "zh-TW" ? 900 : "normal",
-              }}
-              onClick={() => {
-                i18n.changeLanguage("zh-TW");
-              }}
-            >
-              {lngs["ch"].nativeName}
-            </button>
-          </div>
-          <LogoutButton>
-            <button className="btn btn-success" onClick={(e) => handleClick(e)}>
-              {t("topbar.logout")}
-            </button>
-          </LogoutButton>
-        </Nav>
-        <Outlet />
+              /> */}
+                {SidebarDataPublic.map((item, index) => {
+                  return <Submenu item={item} key={index} />;
+                })}
+              </SidebarWrap>
+            )}
+          </SidebarNav>
+        </div>
+        <div style={{ backgroundColor: "var(--primary-color)" }}>
+          <Outlet />
+        </div>
       </div>
     </div>
   );
