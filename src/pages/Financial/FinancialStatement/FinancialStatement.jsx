@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { db } from "../../../firebase";
 import { onValue, ref, remove } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import { format } from "date-fns";
 import "../../../App.css";
-import {
-  BarChart,
-  Bar,
-  Rectangle,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { BarChart, Bar, Rectangle, XAxis, YAxis } from "recharts";
 import { useTranslation } from "react-i18next";
+import { Box } from "@mui/material";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 const FinancialStatement = () => {
   const [search, setSearch] = useState("");
@@ -24,7 +23,8 @@ const FinancialStatement = () => {
   const [newShowExpense, setNewShowExpense] = useState([]);
   const [newShowBalance, setNewShowBalance] = useState([]);
   const [newDate, setNewDate] = useState("");
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const convertMonth = (month) => {
     if (month === "01") {
@@ -54,6 +54,65 @@ const FinancialStatement = () => {
     }
   };
 
+  const columns = [
+    {
+      field: "no",
+      headerName: t("Financial Statement.Ref no"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "date",
+      headerName: t("Financial Statement.Date"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "account",
+      headerName: t("Financial Statement.Amount"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "item",
+      headerName: t("Financial Statement.Item"),
+      flex: 1,
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "total",
+      headerName: t("Financial Statement.Total"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: t("Table Actions.actions"),
+      headerClassName: "custom-container-table-head",
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<VisibilityIcon />}
+          onClick={() => {
+            navigate(`view/${params.id}`);
+          }}
+          label={t("Table Actions.view")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          onClick={() => {
+            navigate(`update/${params.id}`);
+          }}
+          label={t("Table Actions.edit")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          onClick={() => {}}
+          label={t("Table Actions.delete")}
+          showInMenu
+        />,
+      ],
+    },
+  ];
 
   var dateParts = newDate.split("/");
 
@@ -64,13 +123,15 @@ const FinancialStatement = () => {
   var monthString = convertMonth(month);
 
   useEffect(() => {
-
     setNewDate(format(new Date(), "dd/MM/yyyy"));
 
     const getFS = () => {
       onValue(ref(db, "FS"), (snapshot) => {
         if (snapshot.val() !== null) {
-          setFS({ ...snapshot.val() });
+          const obj = snapshot.val();
+          setFS(() =>
+            Object.keys(obj).map((key) => ({ id: key, ...obj[key] }))
+          );
         }
       });
     };
@@ -79,7 +140,6 @@ const FinancialStatement = () => {
   }, []);
 
   const tableRef = useRef(null);
-
 
   useEffect(() => {
     const getBalance = () => {
@@ -94,54 +154,39 @@ const FinancialStatement = () => {
   }, [year]);
 
   useEffect(() => {
-    
     var monthString = convertMonth(month);
 
-      onValue(
-        ref(db, `annualincome/${year}/${monthString}/`),
-        (snapshot) => {
-          if (snapshot.val() !== null) {
-            setNewShowIncome({ ...snapshot.val() });
-          } else {
-            setNewShowIncome({name:`${monthString}` , value: 0 });
-          }
-        }
-      );
-    
+    onValue(ref(db, `annualincome/${year}/${monthString}/`), (snapshot) => {
+      if (snapshot.val() !== null) {
+        setNewShowIncome({ ...snapshot.val() });
+      } else {
+        setNewShowIncome({ name: `${monthString}`, value: 0 });
+      }
+    });
   }, [year, month]);
 
   useEffect(() => {
-    
     var monthString = convertMonth(month);
 
-      onValue(
-        ref(db, `annualexpense/${year}/${monthString}/`),
-        (snapshot) => {
-          if (snapshot.val() !== null) {
-            setNewShowExpense({ ...snapshot.val() });
-          } else {
-            setNewShowExpense({name:`${monthString}` , value: 0 });
-          }
-        }
-      );
-    
+    onValue(ref(db, `annualexpense/${year}/${monthString}/`), (snapshot) => {
+      if (snapshot.val() !== null) {
+        setNewShowExpense({ ...snapshot.val() });
+      } else {
+        setNewShowExpense({ name: `${monthString}`, value: 0 });
+      }
+    });
   }, [year, month]);
 
   useEffect(() => {
-    
     var monthString = convertMonth(month);
 
-      onValue(
-        ref(db, `annualbalance/${year}/${monthString}/`),
-        (snapshot) => {
-          if (snapshot.val() !== null) {
-            setNewShowBalance({ ...snapshot.val() });
-          } else {
-            setNewShowBalance({name:`${monthString}` , value: 0 });
-          }
-        }
-      );
-    
+    onValue(ref(db, `annualbalance/${year}/${monthString}/`), (snapshot) => {
+      if (snapshot.val() !== null) {
+        setNewShowBalance({ ...snapshot.val() });
+      } else {
+        setNewShowBalance({ name: `${monthString}`, value: 0 });
+      }
+    });
   }, [year, month]);
 
   useEffect(() => {
@@ -149,8 +194,8 @@ const FinancialStatement = () => {
       onValue(ref(db, `budget/`), (snapshot) => {
         if (snapshot.val() !== null) {
           setNewBudget({ ...snapshot.val() });
-        }else{
-          setNewBudget({income: 0, expense: 0, balance:0});
+        } else {
+          setNewBudget({ income: 0, expense: 0, balance: 0 });
         }
       });
     };
@@ -186,7 +231,6 @@ const FinancialStatement = () => {
   //   getBBalance();
   // }, []);
 
-
   const bData = [
     newBalance.Jan,
     newBalance.Feb,
@@ -202,39 +246,39 @@ const FinancialStatement = () => {
     newBalance.Dec,
   ];
 
-
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "100%" }}
-      >
-        <div style={{ padding: 'auto' }} className="container">
-          <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-              type="text"
-              className="inputField"
-              placeholder="Search Bar Code"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
-          </div>
-
+      <div className="App">
+        <div className="container">
           <div className="text-end">
-            <h1>{t('table.Financial Statement')}</h1>
-            <NavLink to="add" className="btn-create">
-              {t('Excel.Create')}
-            </NavLink>
-            <DownloadTableExcel
-              filename="Financial Statement table"
-              sheet="Financial Statement"
-              currentTableRef={tableRef.current}
-            >
-              <button className="btn-create"> {t('Excel.Export Excel')} </button>
-            </DownloadTableExcel>
+            <h1>{t("table.Financial Statement")}</h1>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div className="input-wrapper">
+                <FaSearch id="search-icon" />
+                <input
+                  type="text"
+                  className="inputField"
+                  placeholder="Search Bar Code"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+              </div>
+              <NavLink to="add" className="btn-create">
+                {t("Excel.Create")}
+              </NavLink>
+              <DownloadTableExcel
+                filename="Financial Statement table"
+                sheet="Financial Statement"
+                currentTableRef={tableRef.current}
+              >
+                <button className="btn-create">
+                  {" "}
+                  {t("Excel.Export Excel")}{" "}
+                </button>
+              </DownloadTableExcel>
+            </div>
           </div>
-          <table className="styled-table" ref={tableRef}>
+          {/* <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
                 <th style={{ textAlign: "center" }}>{t("Financial Statement.Ref no")}</th>
@@ -288,7 +332,23 @@ const FinancialStatement = () => {
                   );
                 })}
             </tbody>
-          </table>
+          </table> */}
+
+          <div className="custom-container">
+            <Box sx={{ mt: 1, color: "white" }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400, color: "var(--sidebar-font-color)" }}
+                rows={FS}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
+          </div>
+
           <div
             style={{
               display: "flex",
@@ -298,10 +358,7 @@ const FinancialStatement = () => {
           >
             <h5>Annual Balance Chart</h5>
           </div>
-          <div
-            className="stats"
-            
-          >
+          <div className="stats">
             <BarChart
               width={550}
               height={300}
@@ -386,7 +443,9 @@ const FinancialStatement = () => {
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <NavLink to={`buget`} className="btn-edit">Edit Budget</NavLink>
+            <NavLink to={`buget`} className="btn-edit">
+              Edit Budget
+            </NavLink>
           </div>
         </div>
       </div>

@@ -140,7 +140,7 @@
     "Financial Statement": {
         "Ref no": "Ref no",
         "Date": "Date",
-        "Account": "Account",
+        "Amount": "Amount",
         "Item": "Item",
         "Total": "Total",
         "Action": "Action"

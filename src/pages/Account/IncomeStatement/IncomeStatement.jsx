@@ -6,6 +6,12 @@ import { FaSearch } from "react-icons/fa";
 import { format } from "date-fns";
 import "../../../App.css";
 import { useTranslation } from "react-i18next";
+import { Box } from "@mui/material";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
+import { useNavigate } from "react-router-dom";
 
 const IncomeStatement = () => {
   const [search, setSearch] = useState("");
@@ -15,8 +21,8 @@ const IncomeStatement = () => {
   const [newShowExpense, setNewShowExpense] = useState([]);
   const [newShowBalance, setNewShowBalance] = useState([]);
   const [newDate, setNewDate] = useState("");
-  const { t } = useTranslation()
-
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const convertMonth = (month) => {
     if (month === "01") {
@@ -46,6 +52,65 @@ const IncomeStatement = () => {
     }
   };
 
+  const columns = [
+    {
+      field: "no",
+      headerName: t("Income Statement.Ref no"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "date",
+      headerName: t("Income Statement.Date"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "account",
+      headerName: t("Income Statement.Amount"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "item",
+      headerName: t("Income Statement.Item"),
+      flex: 1,
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "total",
+      headerName: t("Income Statement.Total"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: t("Table Actions.actions"),
+      headerClassName: "custom-container-table-head",
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<VisibilityIcon />}
+          onClick={() => {
+            navigate(`view/${params.id}`);
+          }}
+          label={t("Table Actions.view")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          onClick={() => {
+            navigate(`update/${params.id}`);
+          }}
+          label={t("Table Actions.edit")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          onClick={() => {}}
+          label={t("Table Actions.delete")}
+          showInMenu
+        />,
+      ],
+    },
+  ];
 
   var dateParts = newDate.split("/");
 
@@ -56,13 +121,15 @@ const IncomeStatement = () => {
   var monthString = convertMonth(month);
 
   useEffect(() => {
-
     setNewDate(format(new Date(), "dd/MM/yyyy"));
 
     const getFS = () => {
       onValue(ref(db, "FS"), (snapshot) => {
         if (snapshot.val() !== null) {
-          setFS({ ...snapshot.val() });
+          const obj = snapshot.val();
+          setFS(() =>
+            Object.keys(obj).map((key) => ({ id: key, ...obj[key] }))
+          );
         }
       });
     };
@@ -72,60 +139,41 @@ const IncomeStatement = () => {
 
   const tableRef = useRef(null);
 
-
-
-
   useEffect(() => {
-    
     var monthString = convertMonth(month);
 
-      onValue(
-        ref(db, `annualincome/${year}/${monthString}/`),
-        (snapshot) => {
-          if (snapshot.val() !== null) {
-            setNewShowIncome({ ...snapshot.val() });
-          } else {
-            setNewShowIncome({name:`${monthString}` , value: 0 });
-          }
-        }
-      );
-    
+    onValue(ref(db, `annualincome/${year}/${monthString}/`), (snapshot) => {
+      if (snapshot.val() !== null) {
+        setNewShowIncome({ ...snapshot.val() });
+      } else {
+        setNewShowIncome({ name: `${monthString}`, value: 0 });
+      }
+    });
   }, [year, month]);
 
   useEffect(() => {
-    
     var monthString = convertMonth(month);
 
-      onValue(
-        ref(db, `annualexpense/${year}/${monthString}/`),
-        (snapshot) => {
-          if (snapshot.val() !== null) {
-            setNewShowExpense({ ...snapshot.val() });
-          } else {
-            setNewShowExpense({name:`${monthString}` , value: 0 });
-          }
-        }
-      );
-    
+    onValue(ref(db, `annualexpense/${year}/${monthString}/`), (snapshot) => {
+      if (snapshot.val() !== null) {
+        setNewShowExpense({ ...snapshot.val() });
+      } else {
+        setNewShowExpense({ name: `${monthString}`, value: 0 });
+      }
+    });
   }, [year, month]);
 
   useEffect(() => {
-    
     var monthString = convertMonth(month);
 
-      onValue(
-        ref(db, `annualbalance/${year}/${monthString}/`),
-        (snapshot) => {
-          if (snapshot.val() !== null) {
-            setNewShowBalance({ ...snapshot.val() });
-          } else {
-            setNewShowBalance({name:`${monthString}` , value: 0 });
-          }
-        }
-      );
-    
+    onValue(ref(db, `annualbalance/${year}/${monthString}/`), (snapshot) => {
+      if (snapshot.val() !== null) {
+        setNewShowBalance({ ...snapshot.val() });
+      } else {
+        setNewShowBalance({ name: `${monthString}`, value: 0 });
+      }
+    });
   }, [year, month]);
-
 
   // useEffect(() => {
   //   const getBExpense = () => {
@@ -155,7 +203,6 @@ const IncomeStatement = () => {
   //   getBBalance();
   // }, []);
 
-
   // const bData = [
   //   newBalance.Jan,
   //   newBalance.Feb,
@@ -171,37 +218,36 @@ const IncomeStatement = () => {
   //   newBalance.Dec,
   // ];
 
-
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-              type="text"
-              className="inputField"
-              placeholder="Search Bar Code"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
-          </div>
-
+      <div className="App">
+        <div className="container">
           <div className="text-end">
-            <h1>{t('table.Income Statement')}</h1>
-
-            <DownloadTableExcel
-              filename="Income Statement table"
-              sheet="Income Statement"
-              currentTableRef={tableRef.current}
-            >
-              <button className="btn-create"> {t('Excel.Export Excel')} </button>
-            </DownloadTableExcel>
+            <h1>{t("table.Income Statement")}</h1>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="input-wrapper">
+                <FaSearch id="search-icon" />
+                <input
+                  type="text"
+                  className="inputField"
+                  placeholder="Search Bar Code"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+              </div>
+              <DownloadTableExcel
+                filename="Income Statement table"
+                sheet="Income Statement"
+                currentTableRef={tableRef.current}
+              >
+                <button className="btn-create">
+                  {" "}
+                  {t("Excel.Export Excel")}{" "}
+                </button>
+              </DownloadTableExcel>
+            </div>
           </div>
-          <table className="styled-table" ref={tableRef}>
+          {/* <table className="styled-table" ref={tableRef}>
             <thead>
               <tr>
                 <th style={{ textAlign: "center" }}>{t('Income Statement.Ref no')}</th>
@@ -233,8 +279,23 @@ const IncomeStatement = () => {
                   );
                 })}
             </tbody>
-          </table>
-          
+          </table> */}
+
+          <div className="custom-container">
+            <Box sx={{ mt: 1, color: "white" }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400, color: "var(--sidebar-font-color)" }}
+                rows={FS}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
+          </div>
+
           <div
             style={{
               display: "flex",
@@ -251,7 +312,6 @@ const IncomeStatement = () => {
               marginTop: "10px",
             }}
           >
-
             <div>
               <h5>Income</h5>
               <span className="income">${`${newShowIncome.value}`}</span>
@@ -267,11 +327,10 @@ const IncomeStatement = () => {
               <span className="balance">${`${newShowBalance.value}`}</span>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default IncomeStatement
+export default IncomeStatement;

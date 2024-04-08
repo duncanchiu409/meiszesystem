@@ -33,6 +33,8 @@ const Nav = styled.div`
   align-items: center;
   width: 100%
   position: fixed;
+  border: solid;
+  border-color: var(--sidebar-font-color);
 `;
 
 const LogoutButton = styled.div`
