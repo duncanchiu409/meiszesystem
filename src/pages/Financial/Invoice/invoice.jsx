@@ -256,10 +256,10 @@ const Invoice = () => {
 
           {/* div wtih .custom-container to override the bootstrap css */}
           <div className="custom-container">
-            <Box sx={{ mt: 1 }}>
+            <Box sx={{ mt: 1, color: 'white' }}>
               <DataGrid
                 autoHeight
-                sx={{ minHeight: 400 }}
+                sx={{ minHeight: 400, color: 'var(--sidebar-font-color)' }}
                 rows={invoice}
                 columns={columns}
                 initialState={{

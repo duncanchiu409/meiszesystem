@@ -152,6 +152,7 @@ a {
   max-width: 500px;
   padding: 30px;
   padding-bottom: 60px;
+  color: var(--sidebar-font-color);
   background-color: var(--table-color-primary);
   border: 3px solid var(--sidebar-font-color);
 }
@@ -162,8 +163,13 @@ a {
   color: var(--sidebar-font-color);
 }
 
+.custom-container-table-head button{
+  color: var(--sidebar-font-color);
+}
+
 .custom-container p {
   margin-bottom: 0;
+  color: var(--sidebar-font-color);
 }
 
 .container .content .text {
