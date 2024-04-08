@@ -165,7 +165,7 @@ const Sidebar = () => {
         </LogoutButton>
       </Nav>
       <div
-        className={ `${menu ? "hide-sidebar" : ""} content` }
+        className={ `${menu ? "hide-sidebar" : "open-sidebar"} content` }
       >
         <div style={{ width: "100%" }}>
           <SidebarNav>
