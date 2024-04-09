@@ -271,6 +271,15 @@
         "Remark": "Remark",
         "Action": "Action"
     },
+    "Purchase Order List": {
+        "Purchase Order no": "Purchase Order no",
+        "Date": "Date",
+        "Supplier": "Supplier",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Total Amount": "Total Amount",
+        "Status": "Status"
+    },
     "Purchase Budgeting List": {
         "Purchase Planning no": "Purchase Planning no",
         "Date": "Date",

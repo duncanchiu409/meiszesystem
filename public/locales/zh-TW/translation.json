@@ -271,6 +271,15 @@
         "Remark": "評論",
         "Action": "行動"
     },
+    "Purchase Order List": {
+        "Purchase Order no": "採購計畫編號",
+        "Date": "日期",
+        "Supplier": "供應商",
+        "Item": "Item",
+        "Quantity": "數量",
+        "Total Amount": "總金額",
+        "Status": "狀態"
+    },
     "Purchase Budgeting List": {
         "Purchase Planning no": "採購計畫編號",
         "Date": "日期",

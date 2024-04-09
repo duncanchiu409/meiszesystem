@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { db } from "../../../firebase";
 import { onValue, ref } from "firebase/database";
@@ -7,23 +7,109 @@ import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
 import SingleCard from "../../../components/SingleCard";
 import { useTranslation } from "react-i18next";
+import { Box } from "@mui/material";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 const PurchaseBudgeting = () => {
   const [search, setSearch] = useState("");
   const [PurchasePlanning, setPurchasePlanning] = useState([]);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPurchasePlanning = () => {
       onValue(ref(db, "PurchasePlanning"), (snapshot) => {
         if (snapshot.val() !== null) {
-          setPurchasePlanning({ ...snapshot.val() });
+          const obj = snapshot.val()
+          setPurchasePlanning(() => Object.keys(obj).map((key) => ({id: key, ...obj[key]})));
         }
       });
     };
 
     getPurchasePlanning();
   }, []);
+
+  const columns = [
+    {
+      field: "no",
+      flex: 0.3,
+      headerName: t("Purchase Budgeting List.Purchase Planning no"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "date",
+      flex: 0.3,
+      headerName: t("Purchase Budgeting List.Date"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "supplier",
+      flex: 0.3,
+      headerName: t("Purchase Budgeting List.Supplier"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "item",
+      flex: 0.3,
+      headerName: t("Purchase Budgeting List.Item"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "quantity",
+      flex: 0.3,
+      headerName: t("Purchase Budgeting List.Quantity"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "total",
+      flex: 0.3,
+      headerName: t("Purchase Budgeting List.Total Amount"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "status",
+      flex: 0.3,
+      headerName: t("Purchase Planning List.Status"),
+      headerClassName: "custom-container-table-head",
+      renderCell: (params) => {
+        return <div style={ params.value === 'Paid' ? { color: 'green' } : { color: 'red' }}>{ params.value }</div>
+      }
+    },
+    {
+      field: "actions",
+      flex: 0.3,
+      type: "actions",
+      headerName: t("Table Actions.actions"),
+      headerClassName: "custom-container-table-head",
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<VisibilityIcon />}
+          onClick={() => {
+            navigate(`view/${params.id}`);
+          }}
+          label={t("Table Actions.view")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          onClick={() => {
+            navigate(`update/${params.id}`);
+          }}
+          label={t("Table Actions.edit")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          onClick={() => {}}
+          label={t("Table Actions.delete")}
+          showInMenu
+        />,
+      ],
+    },
+  ];
 
   const tableRef = useRef(null);
 
@@ -47,34 +133,51 @@ const PurchaseBudgeting = () => {
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-              type="text"
-              className="inputField"
-              placeholder="Search Bar Code"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
-          </div>
-
+      <div className="App">
+        <div className="container">
           <div className="text-end">
-            <h1>{t('table.Purchase Budgeting List')}</h1>
-
-            <DownloadTableExcel
-              filename="Purchase Budgeting table"
-              sheet="Purchase Budgeting"
-              currentTableRef={tableRef.current}
-            >
-              <button className="btn-create"> {t('Excel.Export Excel')} </button>
-            </DownloadTableExcel>
+            <h1>{t("table.Purchase Budgeting List")}</h1>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="input-wrapper">
+                <FaSearch id="search-icon" />
+                <input
+                  type="text"
+                  className="inputField"
+                  placeholder="Search Bar Code"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+              </div>
+              <DownloadTableExcel
+                filename="Purchase Budgeting table"
+                sheet="Purchase Budgeting"
+                currentTableRef={tableRef.current}
+              >
+                <button className="btn-create">
+                  {" "}
+                  {t("Excel.Export Excel")}{" "}
+                </button>
+              </DownloadTableExcel>
+            </div>
           </div>
-          <table className="styled-table" ref={tableRef}>
+
+          {/* div wtih .custom-container to override the bootstrap css */}
+          <div className="custom-container">
+            <Box sx={{ mt: 1, color: "white" }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400, color: "var(--sidebar-font-color)" }}
+                rows={PurchasePlanning}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
+          </div>
+
+          <table className="styled-table" ref={tableRef} style={{ display: 'none' }}>
             <thead>
               <tr>
                 <th style={{ textAlign: "center" }}>Purchase Planning no.</th>
