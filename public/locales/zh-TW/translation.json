@@ -271,6 +271,15 @@
         "Remark": "評論",
         "Action": "行動"
     },
+    "Reservation List": {
+        "Date": "日期",
+        "Time": "時間",
+        "Client": "客戶",
+        "Service": "服務",
+        "Staff": "職員",
+        "Room": "房間",
+        "Site": "地點"
+    },
     "User List": {
         "User Name": "使用者名稱",
         "Permission": "許可",

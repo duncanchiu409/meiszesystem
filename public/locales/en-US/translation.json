@@ -112,7 +112,7 @@
         "Staff List": "Staff List",
         "Salary And MPF Report": "Salary And MPF Report",
         "Shift Pattern List": "Shift Pattern List",
-        "Resevation List": "Resevation List",
+        "Resevation List": "Reservation List",
         "User List": "User List",
         "Advance Invoice List": "Advance Invoice List"
     },
@@ -270,6 +270,15 @@
         "Description": "Description",
         "Remark": "Remark",
         "Action": "Action"
+    },
+    "Reservation List": {
+        "Date": "Date",
+        "Time": "Time",
+        "Client": "Client",
+        "Service": "Service",
+        "Staff": "Staff",
+        "Room": "Room",
+        "Site": "Site"
     },
     "User List": {
         "User Name": "User Name",
