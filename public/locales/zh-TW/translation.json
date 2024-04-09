@@ -271,6 +271,13 @@
         "Remark": "評論",
         "Action": "行動"
     },
+    "User List": {
+        "User Name": "使用者名稱",
+        "Permission": "許可",
+        "Date of Join": "加入日期",
+        "Mobile": "手機號碼",
+        "Email": "電子郵件"
+    },
     "Table Actions": {
         "actions": "行動",
         "delete": "刪除",

@@ -271,6 +271,13 @@
         "Remark": "Remark",
         "Action": "Action"
     },
+    "User List": {
+        "User Name": "User Name",
+        "Permission": "Permission",
+        "Date of Join": "Date of Join",
+        "Mobile": "Mobile",
+        "Email": "Email"
+    },
     "Table Actions": {
         "actions": "Actions",
         "delete": "Delete",
