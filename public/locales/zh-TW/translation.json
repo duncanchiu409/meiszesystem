@@ -271,11 +271,20 @@
         "Remark": "評論",
         "Action": "行動"
     },
+    "Inventory List": {
+        "Status": "狀態",
+        "Ref no": "參考編號",
+        "Date": "日期",
+        "Product": "產品",
+        "Quantity": "數量",
+        "Total Cost": "總金額",
+        "Remark": "備註"
+    },
     "Purchase Order List": {
         "Purchase Order no": "採購計畫編號",
         "Date": "日期",
         "Supplier": "供應商",
-        "Item": "Item",
+        "Item": "產品",
         "Quantity": "數量",
         "Total Amount": "總金額",
         "Status": "狀態"
