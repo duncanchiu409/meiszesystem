@@ -271,6 +271,14 @@
         "Remark": "Remark",
         "Action": "Action"
     },
+    "Purchase Service List": {
+        "Service": "Service",
+        "Plan": "Plan",
+        "Quantity": "Quantity",
+        "Start Day": "Start Day",
+        "End Day": "End Day",
+        "Purchase By": "Purchase By"
+    },
     "Inventory List": {
         "Status": "Status",
         "Ref no": "Ref no",

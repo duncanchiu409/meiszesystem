@@ -271,6 +271,14 @@
         "Remark": "評論",
         "Action": "行動"
     },
+    "Purchase Service List": {
+        "Service": "服務",
+        "Plan": "計劃",
+        "Quantity": "數量",
+        "Start Day": "開始日",
+        "End Day": "結束日",
+        "Purchase By": "購買者"
+    },
     "Inventory List": {
         "Status": "狀態",
         "Ref no": "參考編號",
