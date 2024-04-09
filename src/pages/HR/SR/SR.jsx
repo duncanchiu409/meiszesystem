@@ -1,22 +1,115 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { db } from "../../../firebase";
 import { onValue, ref, remove } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
 import { useTranslation } from "react-i18next";
+import { Box } from "@mui/material";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 const SR = () => {
   const [search, setSearch] = useState("");
   const [staff, setStaff] = useState([]);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const columns = [
+    {
+      field: "staffno",
+      headerName: t("Salary And MPF Report.Staff no"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "name",
+      flex: 1,
+      headerName: t("Salary And MPF Report.Staff Name"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "position",
+      headerName: t("Salary And MPF Report.Position"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "month",
+      headerName: t("Salary And MPF Report.Month"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "salary",
+      headerName: t("Salary And MPF Report.Salary"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "commission",
+      headerName: t("Salary And MPF Report.Commission"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "MPF",
+      flex: 1,
+      headerName: t("Salary And MPF Report.MPF"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+      valueGetter: (value, row) => {
+        return row.salary > 30000 ? 1500 : row.salary * 0.05;
+      },
+    },
+    {
+      field: "idk",
+      headerName: t("Salary And MPF Report.Salary After deduct MPF"),
+      headerClassName: "custom-container-table-head",
+      valueGetter: (value, row) => {
+        return row.salary > 30000 ? 1500 : row.salary * 0.05;
+      },
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: t("Table Actions.actions"),
+      headerClassName: "custom-container-table-head",
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<VisibilityIcon />}
+          onClick={() => {
+            navigate(`view/${params.id}`);
+          }}
+          label={t("Table Actions.view")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          onClick={() => {
+            navigate(`update/${params.id}`);
+          }}
+          label={t("Table Actions.edit")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          onClick={() => {}}
+          label={t("Table Actions.delete")}
+          showInMenu
+        />,
+      ],
+    },
+  ];
 
   useEffect(() => {
     const getStaff = () => {
       onValue(ref(db, "salaryreport"), (snapshot) => {
         if (snapshot.val() !== null) {
-          setStaff({ ...snapshot.val() });
+          const obj = snapshot.val();
+          setStaff(() =>
+            Object.keys(obj).map((key) => ({ id: key, ...obj[key] }))
+          );
         }
       });
     };
@@ -28,36 +121,54 @@ const SR = () => {
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-              type="text"
-              className="inputField"
-              placeholder="Search Staff"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
+      <div className="App">
+        <div className="container">
+          <div className="text-end">
+            <h1>{t("table.Salary And MPF Report")}</h1>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="input-wrapper">
+                <FaSearch id="search-icon" />
+                <input
+                  type="text"
+                  className="inputField"
+                  placeholder="Search Staff"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+              </div>
+              <NavLink to="add" className="btn-create">
+                {t("Excel.Create")}
+              </NavLink>
+              <DownloadTableExcel
+                filename="Salary Report table"
+                sheet="Salary Report"
+                currentTableRef={tableRef.current}
+              >
+                <button className="btn-create">
+                  {" "}
+                  {t("Excel.Export Excel")}{" "}
+                </button>
+              </DownloadTableExcel>
+            </div>
           </div>
 
-          <div className="text-end">
-            <h1>{t('table.Salary And MPF Report')}</h1>
-            <NavLink to="add" className="btn-create">
-              {t('Excel.Create')}
-            </NavLink>
-            <DownloadTableExcel
-              filename="Salary Report table"
-              sheet="Salary Report"
-              currentTableRef={tableRef.current}
-            >
-              <button className="btn-create"> {t('Excel.Export Excel')} </button>
-            </DownloadTableExcel>
+          {/* div wtih .custom-container to override the bootstrap css */}
+          <div className="custom-container">
+            <Box sx={{ mt: 1, color: "white" }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400, color: "var(--sidebar-font-color)" }}
+                rows={staff}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
           </div>
-          <table className="styled-table" ref={tableRef}>
+
+          <table className="styled-table" ref={tableRef} style={{ display: 'none' }}>
             <thead>
               <tr>
                 <th style={{ textAlign: "center" }}>Staff No.</th>

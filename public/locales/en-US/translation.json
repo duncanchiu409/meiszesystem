@@ -271,6 +271,48 @@
         "Remark": "Remark",
         "Action": "Action"
     },
+    "Purchase Budgeting List": {
+        "Purchase Planning no": "Purchase Planning no",
+        "Date": "Date",
+        "Supplier": "Supplier",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Total Amount": "Total Amount",
+        "Status": "Status"
+    },
+    "Purchase Planning List": {
+        "Purchase Planning no": "Purchase Planning no",
+        "Date": "Date",
+        "Supplier": "Supplier",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Total Amount": "Total Amount",
+        "Status": "Status"
+    },
+    "Shift Pattern List": {
+        "Shift": "Shift",
+        "Shift Pattern": "Shift Pattern"
+    },
+    "Salary And MPF Report": {
+        "Staff no": "Staff no",
+        "Staff Name": "Staff Name",
+        "Position": "Position",
+        "Month": "Month",
+        "Salary": "Salary",
+        "Commission": "Commission",
+        "MPF": "MPF",
+        "Salary After deduct MPF": "Salary After deduct MPF"
+    },
+    "Staff List": {
+        "Staff no": "Staff no",
+        "Staff Name": "Staff Name",
+        "Position": "Position",
+        "Permission": "Permission",
+        "Date of entry": "Date of entry",
+        "Mobile": "Mobile",
+        "Salary": "Salary",
+        "Commission": "Commission" 
+    },
     "Reservation List": {
         "Date": "Date",
         "Time": "Time",

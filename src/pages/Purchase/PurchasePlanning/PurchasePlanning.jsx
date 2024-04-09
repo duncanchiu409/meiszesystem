@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { db } from "../../../firebase";
 import { onValue, ref, remove, set } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
 import format from "date-fns/format";
-import SingleCard from '../../../components/SingleCard';
+import SingleCard from "../../../components/SingleCard";
 import { useTranslation } from "react-i18next";
+import { Box } from "@mui/material";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 const PurchasePlanning = () => {
   const [search, setSearch] = useState("");
@@ -15,7 +20,8 @@ const PurchasePlanning = () => {
   const [newDate, setNewDate] = useState("");
   const [newAIncome, setNewAIncome] = useState([]);
   const [newBalance, setNewBalance] = useState([]);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   // const [newASale, setNewASale] = useState([]);
   // const [newPASale, setNewPASale] = useState([]);
 
@@ -25,7 +31,8 @@ const PurchasePlanning = () => {
     const getPurchasePlanning = () => {
       onValue(ref(db, "PurchasePlanning"), (snapshot) => {
         if (snapshot.val() !== null) {
-          setPurchasePlanning({ ...snapshot.val() });
+          const obj = snapshot.val()
+          setPurchasePlanning(() => Object.keys(obj).map((key) => ({ id: key, ...obj[key] })));
         }
       });
     };
@@ -93,6 +100,85 @@ const PurchasePlanning = () => {
     getBalance();
   }, [year, monthString]);
 
+  const columns = [
+    {
+      field: "no",
+      flex: 0.3,
+      headerName: t("Purchase Planning List.Purchase Planning no"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "date",
+      flex: 0.3,
+      headerName: t("Purchase Planning List.Date"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "supplier",
+      flex: 0.3,
+      headerName: t("Purchase Planning List.Supplier"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "item",
+      flex: 0.3,
+      headerName: t("Purchase Planning List.Item"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "quantity",
+      flex: 0.3,
+      headerName: t("Purchase Planning List.Quantity"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "total",
+      flex: 0.3,
+      headerName: t("Purchase Planning List.Total Amount"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "status",
+      flex: 0.3,
+      headerName: t("Purchase Planning List.Status"),
+      headerClassName: "custom-container-table-head",
+      renderCell: (params) => {
+        return <div style={ params.value === 'Paid' ? { color: 'green' } : { color: 'red' }}>{ params.value }</div>
+      }
+    },
+    {
+      field: "actions",
+      flex: 0.3,
+      type: "actions",
+      headerName: t("Table Actions.actions"),
+      headerClassName: "custom-container-table-head",
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<VisibilityIcon />}
+          onClick={() => {
+            navigate(`view/${params.id}`);
+          }}
+          label={t("Table Actions.view")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          onClick={() => {
+            navigate(`update/${params.id}`);
+          }}
+          label={t("Table Actions.edit")}
+          showInMenu
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          onClick={() => {}}
+          label={t("Table Actions.delete")}
+          showInMenu
+        />,
+      ],
+    },
+  ];
+
   // useEffect(() => {
   //   const getASale = () => {
   //     onValue(ref(db, `annualsale/${year}/${monthString}`), (snapshot) => {
@@ -112,52 +198,69 @@ const PurchasePlanning = () => {
     totalNumber: `600`,
     icon: "ri-money-dollar-circle-line",
   };
-  
+
   const PurchaseObj = {
     title: "Dec 2023",
     totalNumber: `4000`,
     icon: "ri-briefcase-4-fill",
   };
-  
+
   const StockObj = {
-  title: "Nov 2023",
-  totalNumber: `1100`,
-  icon: "ri-store-3-line", 
+    title: "Nov 2023",
+    totalNumber: `1100`,
+    icon: "ri-store-3-line",
   };
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-              type="text"
-              className="inputField"
-              placeholder="Search Bar Code"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
-          </div>
-
+      <div className="App">
+        <div className="container">
           <div className="text-end">
-            <h1>{t('table.Purchase Planning List')}</h1>
-            <NavLink to="add" className="btn-create">
-              {t('Excel.Create')}
-            </NavLink>
-            <DownloadTableExcel
-              filename="Purchase Planning table"
-              sheet="Purchase Planning"
-              currentTableRef={tableRef.current}
-            >
-              <button className="btn-create"> {t('Excel.Export Excel')} </button>
-            </DownloadTableExcel>
-
+            <h1>{t("table.Purchase Planning List")}</h1>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="input-wrapper">
+                <FaSearch id="search-icon" />
+                <input
+                  type="text"
+                  className="inputField"
+                  placeholder="Search Bar Code"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+              </div>
+              <NavLink to="add" className="btn-create">
+                {t("Excel.Create")}
+              </NavLink>
+              <DownloadTableExcel
+                filename="Purchase Planning table"
+                sheet="Purchase Planning"
+                currentTableRef={tableRef.current}
+              >
+                <button className="btn-create">
+                  {" "}
+                  {t("Excel.Export Excel")}{" "}
+                </button>
+              </DownloadTableExcel>
+            </div>
           </div>
-          <table className="styled-table" ref={tableRef}>
+
+          {/* div wtih .custom-container to override the bootstrap css */}
+          <div className="custom-container">
+            <Box sx={{ mt: 1, color: "white" }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400, color: "var(--sidebar-font-color)" }}
+                rows={PurchasePlanning}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
+          </div>
+
+          <table className="styled-table" ref={tableRef} style={{ display: 'none' }}>
             <thead>
               <tr>
                 <th style={{ textAlign: "center" }}>Purchase Planning no.</th>
@@ -576,7 +679,6 @@ const PurchasePlanning = () => {
                         >
                           Delete
                         </button>
-                        
                       </td>
                     </tr>
                   );
@@ -584,20 +686,19 @@ const PurchasePlanning = () => {
             </tbody>
           </table>
           <div className="dashboard" style={{ textAlign: "center" }}>
-        <div className="dashboard_wrapper" style={{ textAlign: "center" }}>
-          <div className="dashboard_cards" style={{ textAlign: "center" }}>
-        <SingleCard item={salesObj} />
-            
-            <SingleCard item={PurchaseObj} />
-            <SingleCard item={StockObj} />
-            </div>
-        </div>
-      </div>
+            <div className="dashboard_wrapper" style={{ textAlign: "center" }}>
+              <div className="dashboard_cards" style={{ textAlign: "center" }}>
+                <SingleCard item={salesObj} />
 
+                <SingleCard item={PurchaseObj} />
+                <SingleCard item={StockObj} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default PurchasePlanning
+export default PurchasePlanning;
