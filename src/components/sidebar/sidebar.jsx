@@ -96,7 +96,7 @@ const Sidebar = () => {
     >
       <Nav>
         <div className="logo-container">
-          <IconButton style={{ paddingLeft: "20px", paddingRight: "20px", color: "var(--font-color)" }} onClick={() => { setMenu((prev) => !prev) }}>{
+          <IconButton style={{ paddingLeft: "20px", paddingRight: "20px", color: "var(--sidebar-font-color)" }} onClick={() => { setMenu((prev) => !prev) }}>{
             menu ? <MenuOutlinedIcon/> : <MenuOpenOutlinedIcon/>
           }</IconButton>
           <img
@@ -114,7 +114,7 @@ const Sidebar = () => {
         </div>
 
         <IconButton
-          style={{ marginRight: "20px", color: "var(--font-color)" }}
+          style={{ marginRight: "20px", color: "var(--sidebar-font-color)" }}
           onClick={() =>
             theme === "dark" ? setTheme("light") : setTheme("dark")
           }

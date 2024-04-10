@@ -8,6 +8,7 @@ import { Calendar } from "react-date-range";
 import format from "date-fns/format";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useTranslation } from "react-i18next";
 
 const AddEditInvoice = () => {
   const [newNo, setNewNo] = useState("");
@@ -17,6 +18,7 @@ const AddEditInvoice = () => {
   const [newQuantity, setNewQuantity] = useState(0);
   const [newPrice, setNewPrice] = useState(0);
   const [newTotal, setNewTotal] = useState(0);
+  const { t } = useTranslation();
 
   // open close
   const [open, setOpen] = useState(false);
@@ -72,49 +74,48 @@ const AddEditInvoice = () => {
       status: "Waiting for reply",
     });
 
-
     navigate("/mainmeun/financial/invoice");
   };
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
+      <div className="App">
+        <div className="container">
           <h1>Add Invoice</h1>
-          <form
-            style={{
-              margin: "auto",
-              padding: "15px",
-              maxWidth: "400px",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
-            <input
-              className="input-add"
-              placeholder="Invoice No..."
-              onChange={(event) => {
-                setNewNo(event.target.value);
-              }}
-            />
-            <input
-              className="input-add"
-              placeholder="Billed to..."
-              onChange={(event) => {
-                setNewBT(event.target.value);
-              }}
-            />
-            <input
-              value={newDate}
-              readOnly
-              className="input-add"
-              onClick={() => setOpen((open) => !open)}
-            />
+          <form className="input-form">
+            <div className="input-container">
+              <label>{t("Invoice List.Invoice no")}</label>
+              <input
+                className="input-add"
+                placeholder="Invoice No..."
+                onChange={(event) => {
+                  setNewNo(event.target.value);
+                }}
+              />
+            </div>
 
-            <div ref={refOne}>
+            <div className="input-container">
+              <label>{t("Invoice List.Date")}</label>
+              <input
+                className="input-add"
+                placeholder="Billed to..."
+                onChange={(event) => {
+                  setNewBT(event.target.value);
+                }}
+              />
+            </div>
+
+            <div className="input-container">
+              <label>{t("Invoice List.Billed to")}</label>
+              <input
+                value={newDate}
+                readOnly
+                className="input-add"
+                onClick={() => setOpen((open) => !open)}
+              />
+            </div>
+
+            <div className="input-calendar" ref={refOne}>
               {open && (
                 <Calendar
                   date={new Date()}
@@ -123,13 +124,18 @@ const AddEditInvoice = () => {
                 />
               )}
             </div>
-            <input
-              className="input-add"
-              placeholder="Item..."
-              onChange={(event) => {
-                setNewItem(event.target.value);
-              }}
-            />
+
+            <div className="input-container">
+              <label>{t("Invoice List.Item")}</label>
+              <input
+                className="input-add"
+                placeholder="Item..."
+                onChange={(event) => {
+                  setNewItem(event.target.value);
+                }}
+              />
+            </div>
+
             <input
               className="input-add"
               type="number"

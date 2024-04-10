@@ -36,11 +36,13 @@ const Customer = () => {
     },
     {
       field: "address",
+      flex: 1,
       headerName: t("Customers List.Address"),
       headerClassName: "custom-container-table-head",
     },
     {
       field: "email",
+      flex: 1,
       headerName: t("Customers List.Email"),
       headerClassName: "custom-container-table-head",
     },

@@ -16,81 +16,6 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 
-const rows = [
-  {
-    id: "049bceb3c7f",
-    img: "https://fastly.picsum.photos/id/1048/200/300.jpg?hmac=0UWwJ_psvsU4JEovhQAStv9fWlVd7reEtF624_vHbbk",
-    bt: "Digital Wave",
-    date: "29/01/2024",
-    item: "E-Commerce",
-    no: "A1234561",
-    price: "1000",
-    quantity: "10",
-    status: "",
-    total: "10000",
-  },
-  {
-    id: "049bceb3c76",
-    img: "https://fastly.picsum.photos/id/1048/200/300.jpg?hmac=0UWwJ_psvsU4JEovhQAStv9fWlVd7reEtF624_vHbbk",
-    bt: "Digital Wave",
-    date: "29/01/2024",
-    item: "E-Commerce",
-    no: "A1234561",
-    price: "1000",
-    quantity: "10",
-    status: "",
-    total: "10000",
-  },
-  {
-    id: "049bceb3c78",
-    img: "https://fastly.picsum.photos/id/1048/200/300.jpg?hmac=0UWwJ_psvsU4JEovhQAStv9fWlVd7reEtF624_vHbbk",
-    bt: "Digital Wave",
-    date: "29/01/2024",
-    item: "E-Commerce",
-    no: "A1234561",
-    price: "1000",
-    quantity: "10",
-    status: "",
-    total: "10000",
-  },
-  {
-    id: "049bceb3c73",
-    img: "https://fastly.picsum.photos/id/1048/200/300.jpg?hmac=0UWwJ_psvsU4JEovhQAStv9fWlVd7reEtF624_vHbbk",
-    bt: "Digital Wave",
-    date: "29/01/2024",
-    item: "E-Commerce",
-    no: "A1234561",
-    price: "1000",
-    quantity: "10",
-    status: "",
-    total: "10000",
-  },
-  {
-    id: "049bceb3c71",
-    img: "",
-    bt: "Digital Wave",
-    date: "29/01/2024",
-    item: "Y-Commerce",
-    no: "A1234562",
-    price: "1000",
-    quantity: "10",
-    status: "",
-    total: "10000",
-  },
-  {
-    id: "049bceb3c72",
-    img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fbuffer.com%2Flibrary%2Ffree-images%2F&psig=AOvVaw101MRSFQs3NpQbu1nQ5CeU&ust=1712387396230000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOiAyqTCqoUDFQAAAAAdAAAAABAE",
-    bt: "Digital Wave",
-    date: "29/01/2024",
-    item: "A-Commerce",
-    no: "A1234563",
-    price: "1000",
-    quantity: "10",
-    status: "",
-    total: "10000",
-  },
-];
-
 const Invoice = () => {
   const [search, setSearch] = useState("");
   const [invoice, setInvoice] = useState([]);
@@ -142,6 +67,9 @@ const Invoice = () => {
       field: "status",
       headerName: t("Invoice List.Status"),
       headerClassName: "custom-container-table-head",
+      renderCell: (params) => {
+        return <div style={ params.value === 'Accepted' ? { color: 'green' } : { color: 'red' }}>{ params.value }</div>
+      }
     },
     {
       field: "actions",
@@ -221,7 +149,7 @@ const Invoice = () => {
         <div className="container">
           <div className="text-end">
             <h1>{t("table.Invoice List")}</h1>
-            <div style={{ display: 'flex', flexDirection: "row" }}>
+            <div style={{ display: "flex", flexDirection: "row" }}>
               <div className="input-wrapper">
                 <FaSearch id="search-icon" style={{ marginRight: "5px" }} />
                 <input
@@ -256,10 +184,10 @@ const Invoice = () => {
 
           {/* div wtih .custom-container to override the bootstrap css */}
           <div className="custom-container">
-            <Box sx={{ mt: 1, color: 'white' }}>
+            <Box sx={{ mt: 1, color: "white" }}>
               <DataGrid
                 autoHeight
-                sx={{ minHeight: 400, color: 'var(--sidebar-font-color)' }}
+                sx={{ minHeight: 400, color: "var(--sidebar-font-color)" }}
                 rows={invoice}
                 columns={columns}
                 initialState={{
