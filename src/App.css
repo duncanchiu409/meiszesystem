@@ -186,6 +186,10 @@ a {
   cursor: none;
 }
 
+.input-calendar{
+  margin: 0 auto;
+}
+
 .input-container label{
   font-size: x-large;
   display: flex;

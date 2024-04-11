@@ -148,7 +148,12 @@ const UpdateInvoice = () => {
     <div className="main">
       <div className="App">
         <div className="container">
-          <h1>Edit Invoice #{invoice.no}</h1>
+          <h1>
+            {t("Table Actions.edit") +
+              " " +
+              t("sidebar.Financial Management.Invoice")}{" "}
+            #{invoice.no}
+          </h1>
 
           <form className="input-form">
             <div
@@ -203,15 +208,6 @@ const UpdateInvoice = () => {
                   setEditingContainer(() => 3);
                 }}
               />
-              <div className="input-calendar" ref={refOne}>
-                {open && (
-                  <Calendar
-                    date={new Date()}
-                    onChange={handleSelect}
-                    className="calendarElement"
-                  />
-                )}
-              </div>
             </div>
 
             <div
@@ -230,6 +226,16 @@ const UpdateInvoice = () => {
                 }}
                 onClick={() => setEditingContainer(() => 4)}
               />
+            </div>
+
+            <div className="input-calendar" ref={refOne}>
+              {open && (
+                <Calendar
+                  date={new Date()}
+                  onChange={handleSelect}
+                  className="calendarElement"
+                />
+              )}
             </div>
 
             <div
@@ -310,7 +316,7 @@ const UpdateInvoice = () => {
               </select>
             </div>
 
-            <div className="text-center" style={{ gridColumn: '1/3' }}>
+            <div className="text-center" style={{ gridColumn: "1/3" }}>
               <button
                 className="btn-create"
                 onClick={newStatus === "Accepted" ? createContract : createUser}
