@@ -55,17 +55,20 @@ const IncomeStatement = () => {
   const columns = [
     {
       field: "no",
+      flex: 0.3,
       headerName: t("Income Statement.Ref no"),
       headerClassName: "custom-container-table-head",
     },
     {
       field: "date",
+      flex: 0.3,
       headerName: t("Income Statement.Date"),
       headerClassName: "custom-container-table-head",
     },
     {
       field: "account",
-      headerName: t("Income Statement.Amount"),
+      flex: 0.3,
+      headerName: t("Income Statement.Account"),
       headerClassName: "custom-container-table-head",
     },
     {
@@ -76,40 +79,40 @@ const IncomeStatement = () => {
     },
     {
       field: "total",
+      flex: 0.3,
       headerName: t("Income Statement.Total"),
-      type: "number",
       headerClassName: "custom-container-table-head",
     },
-    {
-      field: "actions",
-      type: "actions",
-      headerName: t("Table Actions.actions"),
-      headerClassName: "custom-container-table-head",
-      getActions: (params) => [
-        <GridActionsCellItem
-          icon={<VisibilityIcon />}
-          onClick={() => {
-            navigate(`view/${params.id}`);
-          }}
-          label={t("Table Actions.view")}
-          showInMenu
-        />,
-        <GridActionsCellItem
-          icon={<EditIcon />}
-          onClick={() => {
-            navigate(`update/${params.id}`);
-          }}
-          label={t("Table Actions.edit")}
-          showInMenu
-        />,
-        <GridActionsCellItem
-          icon={<DeleteIcon />}
-          onClick={() => {}}
-          label={t("Table Actions.delete")}
-          showInMenu
-        />,
-      ],
-    },
+    // {
+    //   field: "actions",
+    //   type: "actions",
+    //   headerName: t("Table Actions.actions"),
+    //   headerClassName: "custom-container-table-head",
+    //   getActions: (params) => [
+    //     <GridActionsCellItem
+    //       icon={<VisibilityIcon />}
+    //       onClick={() => {
+    //         navigate(`view/${params.id}`);
+    //       }}
+    //       label={t("Table Actions.view")}
+    //       showInMenu
+    //     />,
+    //     <GridActionsCellItem
+    //       icon={<EditIcon />}
+    //       onClick={() => {
+    //         navigate(`update/${params.id}`);
+    //       }}
+    //       label={t("Table Actions.edit")}
+    //       showInMenu
+    //     />,
+    //     <GridActionsCellItem
+    //       icon={<DeleteIcon />}
+    //       onClick={() => {}}
+    //       label={t("Table Actions.delete")}
+    //       showInMenu
+    //     />,
+    //   ],
+    // },
   ];
 
   var dateParts = newDate.split("/");

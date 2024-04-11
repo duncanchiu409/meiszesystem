@@ -105,7 +105,7 @@ const UpdateFinancialStatement = () => {
                 " input-container"
               }
             >
-              <label className="">{t("Invoice List.Invoice no")}</label>
+              <label className="">{t("Financial Statement.Ref no")}</label>
               <input
                 value={newNo}
                 className="input-add"
@@ -123,30 +123,40 @@ const UpdateFinancialStatement = () => {
                 " input-container"
               }
             >
-              <label className="">{t("Invoice List.Invoice no")}</label>
-            <input
-              value={newDate}
-              readOnly
-              className="input-add"
-              onClick={() => {
-                setOpen((open) => !open)
-                setEditingContainer(() => 2)
-              }}
-            />
+              <label className="">{t("Financial Statement.Date")}</label>
+              <input
+                value={newDate}
+                readOnly
+                className="input-add"
+                onClick={() => {
+                  setOpen((open) => !open);
+                  setEditingContainer(() => 2);
+                }}
+              />
             </div>
 
-            <select
-              value={newAccount}
-              className="input-add"
-              placeholder="Account..."
-              onChange={(event) => {
-                setNewAccount(event.target.value);
-              }}
+            <div
+              className={
+                (editingContainer === 3 ? "editing-input-container" : "") +
+                " input-container"
+              }
             >
-              <option>{"Expense"}</option>
-              <option>{"Income"}</option>
-            </select>
-            <div ref={refOne}>
+              <label className="">{t("Financial Statement.Amount")}</label>
+              <select
+                value={newAccount}
+                className="input-add"
+                placeholder="Account..."
+                onChange={(event) => {
+                  setNewAccount(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 3)}
+              >
+                <option>{"Expense"}</option>
+                <option>{"Income"}</option>
+              </select>
+            </div>
+
+            <div ref={refOne} className="input-calendar">
               {open && (
                 <Calendar
                   date={new Date()}
@@ -155,24 +165,45 @@ const UpdateFinancialStatement = () => {
                 />
               )}
             </div>
-            <input
-              value={newItem}
-              className="input-add"
-              placeholder="Item..."
-              onChange={(event) => {
-                setNewItem(event.target.value);
-              }}
-            />
-            <input
-              value={newTotal}
-              className="input-add"
-              type="number"
-              placeholder="Total..."
-              onChange={(event) => {
-                setNewTotal(event.target.value);
-              }}
-            />
-            <div className="text-center">
+
+            <div
+              className={
+                (editingContainer === 4 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Financial Statement.Item")}</label>
+              <input
+                value={newItem}
+                className="input-add"
+                placeholder="Item..."
+                onChange={(event) => {
+                  setNewItem(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 4)}
+              />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 5 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Financial Statement.Total")}</label>
+              <input
+                value={newTotal}
+                className="input-add"
+                type="number"
+                placeholder="Total..."
+                onChange={(event) => {
+                  setNewTotal(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 5)}
+              />
+            </div>
+
+            <div className="text-center" style={{ gridColumn: "1/3" }}>
               <button className="btn-create" onClick={createUser}>
                 Create Statement
               </button>

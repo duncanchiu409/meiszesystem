@@ -154,7 +154,7 @@ const Inventory = () => {
             </Box>
           </div>
 
-          <table className="styled-table" ref={tableRef}>
+          <table className="styled-table" ref={tableRef} style={{ display: "none" }}>
             <thead>
               <tr>
                 <th style={{ textAlign: "center" }}>Status</th>

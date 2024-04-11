@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useTransition } from "react";
 import { db } from "../../../firebase";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "./AddEdit.css";
@@ -7,6 +7,7 @@ import format from "date-fns/format";
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useTranslation } from "react-i18next";
 
 const UpdateCustomer = () => {
   const [newGroup, setNewGroup] = useState("");
@@ -21,6 +22,8 @@ const UpdateCustomer = () => {
   const [customers, setCustomers] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
+  const { t } = useTranslation();
+  const [editingContainer, setEditingContainer] = useState(0);
 
   // open close
   const [open, setOpen] = useState(false);
@@ -85,7 +88,7 @@ const UpdateCustomer = () => {
       });
     };
     getCustomers();
-    setNewGroup(customers.group)
+    setNewGroup(customers.group);
     setNewName(customers.name);
     setNewGender(customers.gender);
     setNewMobile(customers.mobile);
@@ -108,114 +111,190 @@ const UpdateCustomer = () => {
   ]);
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <h1>Edit Customer</h1>
+      <div className="App">
+        <div className="container">
+          <h1>
+            {t("Table Actions.edit") + " " + t("sidebar.Customers.Clients")}
+          </h1>
 
-          <form
-            style={{
-              margin: "auto",
-              padding: "15px",
-              maxWidth: "400px",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
-            <input
+          <form className="input-form">
+            <div
+              className={
+                (editingContainer === 1 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Group")}</label>
+              <input
                 className="input-add"
                 placeholder="Group..."
                 value={newGroup || ""}
                 onChange={(event) => {
                   setNewGroup(event.target.value);
                 }}
+                onClick={() => setEditingContainer(() => 1)}
               />
-            <input
-              className="input-add"
-              placeholder="Name..."
-              value={newName || ""}
-              onChange={(event) => {
-                setNewName(event.target.value);
-              }}
-            />
-            <select
-              className="input-add"
-              placeholder="Gender..."
-              value={newGender || ""}
-              onChange={(event) => {
-                setNewGender(event.target.value);
-              }}
-            >
-              
-              <option>{"Male"}</option>
-              <option>{"Female"}</option>
+            </div>
 
-            </select>
-            <input
-              className="input-add"
-              placeholder="Mobile..."
-              value={newMobile || ""}
-              onChange={(event) => {
-                setNewMobile(event.target.value);
-              }}
-            />
-            <input
-              className="input-add"
-              placeholder="Address..."
-              value={newAddress || ""}
-              onChange={(event) => {
-                setNewAddress(event.target.value);
-              }}
-            />
-            <input
-              className="input-add"
-              placeholder="Email..."
-              value={newEmail || ""}
-              onChange={(event) => {
-                setNewEmail(event.target.value);
-              }}
-            />
-            <>
+            <div
+              className={
+                (editingContainer === 2 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Name")}</label>
+              <input
+                className="input-add"
+                placeholder="Name..."
+                value={newName || ""}
+                onChange={(event) => {
+                  setNewName(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 2)}
+              />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 3 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Gender")}</label>
+              <select
+                className="input-add"
+                placeholder="Gender..."
+                value={newGender || ""}
+                onChange={(event) => {
+                  setNewGender(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 3)}
+              >
+                <option>{"Male"}</option>
+                <option>{"Female"}</option>
+              </select>
+            </div>
+
+            <div
+              className={
+                (editingContainer === 4 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Mobile")}</label>
+              <input
+                className="input-add"
+                placeholder="Mobile..."
+                value={newMobile || ""}
+                onChange={(event) => {
+                  setNewMobile(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 4)}
+              />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 5 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Address")}</label>
+              <input
+                className="input-add"
+                placeholder="Address..."
+                value={newAddress || ""}
+                onChange={(event) => {
+                  setNewAddress(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 5)}
+              />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 6 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Email")}</label>
+              <input
+                className="input-add"
+                placeholder="Email..."
+                value={newEmail || ""}
+                onChange={(event) => {
+                  setNewEmail(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 6)}
+              />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 7 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Join Date")}</label>
               <input
                 value={newDOJ}
                 readOnly
                 className="input-add"
                 placeholder="Date..."
-                onClick={() => setOpen((open) => !open)}
+                onClick={() => {
+                  setOpen((open) => !open);
+                  setEditingContainer(() => 7);
+                }}
               />
+            </div>
 
-              <div ref={refOne}>
-                {open && (
-                  <Calendar
-                    date={new Date()}
-                    onChange={handleSelect}
-                    className="calendarElement"
-                  />
-                )}
-              </div>
-            </>
+            <div ref={refOne} className="input-calendar">
+              {open && (
+                <Calendar
+                  date={new Date()}
+                  onChange={handleSelect}
+                  className="calendarElement"
+                />
+              )}
+            </div>
 
-            <input
+            <div
+              className={
+                (editingContainer === 8 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Follow-Up")}</label>
+              <input
                 className="input-add"
                 placeholder="Follow-Up..."
                 value={newFollow || ""}
                 onChange={(event) => {
                   setNewFollow(event.target.value);
                 }}
+                onClick={() => setEditingContainer(() => 8)}
               />
+            </div>
 
-              <input
-                className="input-add"
-                placeholder="Source..."
-                value={newSource || ""}
-                onChange={(event) => {
-                  setNewSource(event.target.value);
-                }}
-              /> 
+            <div
+              className={
+                (editingContainer === 9 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Customers List.Source")}</label>
+            <input
+              className="input-add"
+              placeholder="Source..."
+              value={newSource || ""}
+              onChange={(event) => {
+                setNewSource(event.target.value);
+              }}
+              onClick={() => setEditingContainer(() => 9)}
+            />
+            </div>
 
-            <div className="text-center">
+            <div className="text-center" style={{ gridColumn: "1/3" }}>
               <button className="btn-create" onClick={createUser}>
                 Edit Customer
               </button>
