@@ -355,6 +355,17 @@
         "Mobile": "手機號碼",
         "Email": "電子郵件"
     },
+    "Suppliers List": {
+        "Supplier": "供應商",
+        "Address": "地址",
+        "Contact Person": "聯絡人",
+        "Email": "電子郵件",
+        "Office Telephone": "辦公室電話",
+        "Mobile": "手機號碼"
+    },
+    "Share Drive": {
+        "Drop File Input": "檔案輸入"
+    },
     "Table Actions": {
         "actions": "行動",
         "delete": "刪除",

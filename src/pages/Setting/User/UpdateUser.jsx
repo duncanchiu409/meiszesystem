@@ -7,14 +7,17 @@ import { Calendar } from "react-date-range";
 import format from "date-fns/format";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useTranslation } from "react-i18next";
 
 const UpdateUser = () => {
   const [newName, setNewName] = useState("");
-    const [newEmail, setNewEmail] = useState(0);
-    const [newPermission, setNewPermission] = useState("");
-    const [newDOE, setNewDOE] = useState("");
-    const [newMobile, setNewMobile] = useState(0);
+  const [newEmail, setNewEmail] = useState(0);
+  const [newPermission, setNewPermission] = useState("");
+  const [newDOE, setNewDOE] = useState("");
+  const [newMobile, setNewMobile] = useState(0);
   const [staff, setStaff] = useState([]);
+  const { t } = useTranslation();
+  const [editingContainer, setEditingContainer] = useState(0);
 
   // open close
   const [open, setOpen] = useState(false);
@@ -60,10 +63,10 @@ const UpdateUser = () => {
   const createUser = () => {
     set(ref(db, "User/" + id), {
       name: newName,
-        email: newEmail,
-        permission: newPermission,
-        doj: newDOE,
-        mobile: newMobile,
+      email: newEmail,
+      permission: newPermission,
+      doj: newDOE,
+      mobile: newMobile,
     });
 
     navigate("/mainmeun/hr/staff");
@@ -94,44 +97,42 @@ const UpdateUser = () => {
 
     setNewDOE(staff.doj);
     setNewMobile(staff.mobile);
-
-  }, [
-    id,
-    staff.name,
-    staff.email,
-    staff.permission,
-
-    staff.doj,
-    staff.mobile,
-
-  ]);
+  }, [id, staff.name, staff.email, staff.permission, staff.doj, staff.mobile]);
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <h1>Edit User</h1>
+      <div className="App">
+        <div className="container">
+          <h1>
+            {t("Table Actions.edit") + " " + t("sidebar.Setting.User Setting")}
+          </h1>
 
-          <form
-            style={{
-              margin: "auto",
-              padding: "15px",
-              maxWidth: "400px",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
-            <input
+          <form className="input-form">
+            <div
+              className={
+                (editingContainer === 1 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("User List.User Name")}</label>
+              <input
                 className="input-add"
                 placeholder="Name..."
                 value={newName || ""}
                 onChange={(event) => {
                   setNewName(event.target.value);
                 }}
+                onClick={() => setEditingContainer(() => 1)}
               />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 2 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("User List.Permission")}</label>
               <select
                 className="input-add"
                 placeholder="Permission..."
@@ -139,28 +140,40 @@ const UpdateUser = () => {
                 onChange={(event) => {
                   setNewPermission(event.target.value);
                 }}
+                onClick={() => setEditingContainer(() => 2)}
               >
                 <option>{"Please select permission"}</option>
                 <option>{"Clients"}</option>
                 <option>{"Staff"}</option>
                 <option>{"Admin"}</option>
               </select>
+            </div>
+
+            <div
+              className={
+                (editingContainer === 3 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("User List.Date of Join")}</label>
               <input
                 value={newDOE}
                 readOnly
                 className="input-add"
-                onClick={() => setOpen((open) => !open)}
+                onClick={() => {
+                  setEditingContainer(() => 3);
+                  setOpen((open) => !open);
+                }}
               />
-  
-              <div ref={refOne}>
-                {open && (
-                  <Calendar
-                    date={new Date()}
-                    onChange={handleSelect}
-                    className="calendarElement"
-                  />
-                )}
-              </div>
+            </div>
+
+            <div
+              className={
+                (editingContainer === 4 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("User List.Mobile")}</label>
               <input
                 className="input-add"
                 type="number"
@@ -169,7 +182,27 @@ const UpdateUser = () => {
                 onChange={(event) => {
                   setNewMobile(event.target.value);
                 }}
+                onClick={() => setEditingContainer(() => 4)}
               />
+            </div>
+
+            <div ref={refOne} className="input-calendar">
+              {open && (
+                <Calendar
+                  date={new Date()}
+                  onChange={handleSelect}
+                  className="calendarElement"
+                />
+              )}
+            </div>
+
+            <div
+              className={
+                (editingContainer === 5 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("User List.Email")}</label>
               <input
                 className="input-add"
                 placeholder="Email..."
@@ -177,8 +210,11 @@ const UpdateUser = () => {
                 onChange={(event) => {
                   setNewEmail(event.target.value);
                 }}
+                onClick={() => setEditingContainer(() => 5)}
               />
-            <div className="text-center">
+            </div>
+
+            <div className="text-center" style={{ gridColumn: "1/3" }}>
               <button className="btn-create" onClick={createUser}>
                 Edit User
               </button>
@@ -191,6 +227,6 @@ const UpdateUser = () => {
       </div>
     </div>
   );
-}
+};
 
-export default UpdateUser
+export default UpdateUser;

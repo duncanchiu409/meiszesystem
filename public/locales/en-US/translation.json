@@ -355,6 +355,17 @@
         "Mobile": "Mobile",
         "Email": "Email"
     },
+    "Suppliers List": {
+        "Supplier": "Supplier",
+        "Address": "Address",
+        "Contact Person": "Contact Person",
+        "Email": "Email",
+        "Office Telephone": "Office Telephone",
+        "Mobile": "Mobile"
+    },
+    "Share Drive": {
+        "Drop File Input": "Drop File"
+    },
     "Table Actions": {
         "actions": "Actions",
         "delete": "Delete",

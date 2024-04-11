@@ -7,6 +7,7 @@ import { Calendar } from "react-date-range";
 import format from "date-fns/format";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useTranslation } from "react-i18next";
 
 const UpdateStaff = () => {
   const [newName, setNewName] = useState("");
@@ -16,8 +17,10 @@ const UpdateStaff = () => {
   const [newDOE, setNewDOE] = useState("");
   const [newMobile, setNewMobile] = useState(0);
   const [newSalary, setNewSalary] = useState(0);
-  const [newCommission, setNewCommission] =useState(0);
+  const [newCommission, setNewCommission] = useState(0);
   const [staff, setStaff] = useState([]);
+  const { t } = useTranslation();
+  const [editingContainer, setEditingContainer] = useState(0);
 
   // open close
   const [open, setOpen] = useState(false);
@@ -111,77 +114,138 @@ const UpdateStaff = () => {
     staff.doe,
     staff.mobile,
     staff.salary,
-    staff.commission
+    staff.commission,
   ]);
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <h1>Edit Staff #{id}</h1>
+      <div className="App">
+        <div className="container">
+          <h1>
+            {t("Table Actions.edit") + " " + t("sidebar.HR.Staff")} #{id}
+          </h1>
 
-          <form
-            style={{
-              margin: "auto",
-              padding: "15px",
-              maxWidth: "400px",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
-            <input
-              className="input-add"
-              value={newStaffNo || ""}
-              placeholder="Staff No..."
-              onChange={(event) => {
-                setStaffNo(event.target.value);
-              }}
-            />
-            <input
-              className="input-add"
-              placeholder="Name..."
-              value={newName || ""}
-              onChange={(event) => {
-                setNewName(event.target.value);
-              }}
-            />
-            <select
-              className="input-add"
-              placeholder="Position..."
-              value={newPosition || ""}
-              onChange={(event) => {
-                setNewPosition(event.target.value);
-              }}
+          <form className="input-form">
+            <div
+              className={
+                (editingContainer === 1 ? "editing-input-container" : "") +
+                " input-container"
+              }
             >
-              <option>{"Please select position"}</option>
-              <option>{"Assistant"}</option>
-              <option>{"Senior Assistant"}</option>
-              <option>{"Manager"}</option>
-            </select>
-            <select
-              className="input-add"
-              placeholder="Permission..."
-              value={newPermission || ""}
-              onChange={(event) => {
-                setNewPermission(event.target.value);
-              }}
-            >
-              <option>{"Please select permission"}</option>
-              <option>{"Clients"}</option>
-              <option>{"Staff"}</option>
-              <option>{"Admin"}</option>
-            </select>
-            <input
-              value={newDOE}
-              readOnly
-              className="input-add"
-              onClick={() => setOpen((open) => !open)}
-            />
+              <label className="">{t("Staff List.Staff no")}</label>
+              <input
+                className="input-add"
+                value={newStaffNo || ""}
+                placeholder="Staff No..."
+                onChange={(event) => {
+                  setStaffNo(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 1)}
+              />
+            </div>
 
-            <div ref={refOne}>
+            <div
+              className={
+                (editingContainer === 2 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Staff List.Staff no")}</label>
+              <input
+                className="input-add"
+                placeholder="Name..."
+                value={newName || ""}
+                onChange={(event) => {
+                  setNewName(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 2)}
+              />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 3 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Staff List.Position")}</label>
+              <select
+                className="input-add"
+                placeholder="Position..."
+                value={newPosition || ""}
+                onChange={(event) => {
+                  setNewPosition(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 3)}
+              >
+                <option>{"Please select position"}</option>
+                <option>{"Assistant"}</option>
+                <option>{"Senior Assistant"}</option>
+                <option>{"Manager"}</option>
+              </select>
+            </div>
+
+            <div
+              className={
+                (editingContainer === 4 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Staff List.Permission")}</label>
+              <select
+                className="input-add"
+                placeholder="Permission..."
+                value={newPermission || ""}
+                onChange={(event) => {
+                  setNewPermission(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 4)}
+              >
+                <option>{"Please select permission"}</option>
+                <option>{"Clients"}</option>
+                <option>{"Staff"}</option>
+                <option>{"Admin"}</option>
+              </select>
+            </div>
+
+            <div
+              className={
+                (editingContainer === 5 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Staff List.Date of entry")}</label>
+              <input
+                value={newDOE}
+                readOnly
+                className="input-add"
+                onClick={() => {
+                  setEditingContainer(() => 5);
+                  setOpen((open) => !open);
+                }}
+              />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 6 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Staff List.Mobile")}</label>
+              <input
+                className="input-add"
+                type="number"
+                placeholder="Mobile..."
+                value={newMobile}
+                onChange={(event) => {
+                  setNewMobile(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 6)}
+              />
+            </div>
+
+            <div ref={refOne} className="input-calendar">
               {open && (
                 <Calendar
                   date={new Date()}
@@ -190,25 +254,27 @@ const UpdateStaff = () => {
                 />
               )}
             </div>
-            <input
-              className="input-add"
-              type="number"
-              placeholder="Mobile..."
-              value={newMobile}
-              onChange={(event) => {
-                setNewMobile(event.target.value);
-              }}
-            />
-            <input
-              className="input-add"
-              type="number"
-              placeholder="Salary..."
-              value={newSalary}
-              onChange={(event) => {
-                setNewSalary(event.target.value);
-              }}
-            />
-            <div className="text-center">
+
+            <div
+              className={
+                (editingContainer === 7 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Staff List.Salary")}</label>
+              <input
+                className="input-add"
+                type="number"
+                placeholder="Salary..."
+                value={newSalary}
+                onChange={(event) => {
+                  setNewSalary(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 7)}
+              />
+            </div>
+
+            <div className="text-center" style={{ gridColumn: "1/3" }}>
               <button className="btn-create" onClick={createUser}>
                 Edit Staff
               </button>
