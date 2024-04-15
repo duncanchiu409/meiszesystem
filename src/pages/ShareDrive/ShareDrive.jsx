@@ -117,7 +117,15 @@ const ShareDrive = () => {
       <div className="App">
         <div className="container">
           <h2 className="header">{t("Share Drive.Drop File Input")}</h2>
-          <div style={{ display: 'flex', flexDirection: 'row-reverse', gap: '10px', alignItems: 'center' }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row-reverse",
+              gap: "10px",
+              alignItems: "center",
+            }}
+          >
+            <label className="file-upload-btn">Create Folder</label>
             <label className="file-upload-btn">Submit File</label>
             <input
               type="file"
@@ -127,7 +135,10 @@ const ShareDrive = () => {
               }}
               hidden
             />
-            <label className="file-upload-btn" htmlFor="file">Upload File</label>
+
+            <label className="file-upload-btn" htmlFor="file">
+              Upload File
+            </label>
             <label>{file ? file.name : "No File Chosen"}</label>
             <label>You have uploaded:</label>
           </div>

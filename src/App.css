@@ -274,8 +274,8 @@ a {
 
 .hide-sidebar {
   grid-template-columns: 0% 1fr;
-  animation-name: close-sidebar;
-  animation-duration: 1s;
+  /* animation-name: close-sidebar;
+  animation-duration: 1s; */
 }
 
 @keyframes open-sidebar {
@@ -291,8 +291,8 @@ a {
 
 .open-sidebar {
   grid-template-columns: 20% 1fr;
-  animation-name: open-sidebar;
-  animation-duration: 3s;
+  /* animation-name: open-sidebar;
+  animation-duration: 3s; */
 }
 
 .container {
