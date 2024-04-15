@@ -112,7 +112,7 @@
         "Staff List": "Staff List",
         "Salary And MPF Report": "Salary And MPF Report",
         "Shift Pattern List": "Shift Pattern List",
-        "Resevation List": "Resevation List",
+        "Resevation List": "Reservation List",
         "User List": "User List",
         "Advance Invoice List": "Advance Invoice List"
     },
@@ -140,7 +140,7 @@
     "Financial Statement": {
         "Ref no": "Ref no",
         "Date": "Date",
-        "Account": "Account",
+        "Amount": "Amount",
         "Item": "Item",
         "Total": "Total",
         "Action": "Action"
@@ -270,6 +270,101 @@
         "Description": "Description",
         "Remark": "Remark",
         "Action": "Action"
+    },
+    "Purchase Service List": {
+        "Service": "Service",
+        "Plan": "Plan",
+        "Quantity": "Quantity",
+        "Start Day": "Start Day",
+        "End Day": "End Day",
+        "Purchase By": "Purchase By"
+    },
+    "Inventory List": {
+        "Status": "Status",
+        "Ref no": "Ref no",
+        "Date": "Date",
+        "Product": "Product",
+        "Quantity": "Quantity",
+        "Total Cost": "Total Cost",
+        "Remark": "Remark"
+    },
+    "Purchase Order List": {
+        "Purchase Order no": "Purchase Order no",
+        "Date": "Date",
+        "Supplier": "Supplier",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Total Amount": "Total Amount",
+        "Status": "Status"
+    },
+    "Purchase Budgeting List": {
+        "Purchase Planning no": "Purchase Planning no",
+        "Date": "Date",
+        "Supplier": "Supplier",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Total Amount": "Total Amount",
+        "Status": "Status"
+    },
+    "Purchase Planning List": {
+        "Purchase Planning no": "Purchase Planning no",
+        "Date": "Date",
+        "Supplier": "Supplier",
+        "Item": "Item",
+        "Quantity": "Quantity",
+        "Total Amount": "Total Amount",
+        "Status": "Status"
+    },
+    "Shift Pattern List": {
+        "Shift": "Shift",
+        "Shift Pattern": "Shift Pattern"
+    },
+    "Salary And MPF Report": {
+        "Staff no": "Staff no",
+        "Staff Name": "Staff Name",
+        "Position": "Position",
+        "Month": "Month",
+        "Salary": "Salary",
+        "Commission": "Commission",
+        "MPF": "MPF",
+        "Salary After deduct MPF": "Salary After deduct MPF"
+    },
+    "Staff List": {
+        "Staff no": "Staff no",
+        "Staff Name": "Staff Name",
+        "Position": "Position",
+        "Permission": "Permission",
+        "Date of entry": "Date of entry",
+        "Mobile": "Mobile",
+        "Salary": "Salary",
+        "Commission": "Commission" 
+    },
+    "Reservation List": {
+        "Date": "Date",
+        "Time": "Time",
+        "Client": "Client",
+        "Service": "Service",
+        "Staff": "Staff",
+        "Room": "Room",
+        "Site": "Site"
+    },
+    "User List": {
+        "User Name": "User Name",
+        "Permission": "Permission",
+        "Date of Join": "Date of Join",
+        "Mobile": "Mobile",
+        "Email": "Email"
+    },
+    "Suppliers List": {
+        "Supplier": "Supplier",
+        "Address": "Address",
+        "Contact Person": "Contact Person",
+        "Email": "Email",
+        "Office Telephone": "Office Telephone",
+        "Mobile": "Mobile"
+    },
+    "Share Drive": {
+        "Drop File Input": "Drop File"
     },
     "Table Actions": {
         "actions": "Actions",

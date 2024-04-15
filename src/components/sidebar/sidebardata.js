@@ -14,7 +14,6 @@ const SidebarData = [
   {
     title: "Financial Management",
     translation: "sidebar.Financial Management.Financial Management",
-    path: "financial/invoice",
     icon: <FaIcons.FaCalculator />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -42,7 +41,6 @@ const SidebarData = [
   {
     title: "Account",
     translation: "sidebar.Account.Account",
-    path: "account/accountpayable",
     icon: <AiIcons.AiFillCalculator />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -82,7 +80,6 @@ const SidebarData = [
   {
     title: "Sale",
     translation: "sidebar.Sale.Sale",
-    path: "sale/quotation",
     icon: <MdIcons.MdPointOfSale />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -122,7 +119,6 @@ const SidebarData = [
   {
     title: "Customers",
     translation: "sidebar.Customers.Customers",
-    path: "customer/clients/",
     icon: <FaIcons.FaUsers />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -162,7 +158,6 @@ const SidebarData = [
   {
     title: "Products Management",
     translation: "sidebar.Products Management.Products Management",
-    path: "product",
     icon: <FaIcons.FaCartPlus />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -184,7 +179,6 @@ const SidebarData = [
   {
     title: "Service Management",
     translation: "sidebar.Service Management.Service Management",
-    path: "service",
     icon: <FaIcons.FaCartPlus />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -224,7 +218,6 @@ const SidebarData = [
   {
     title: "Purchase",
     translation: "sidebar.Purchase.Purchase",
-    path: "purchase/pp",
     icon: <BiIcons.BiSolidPurchaseTagAlt />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -258,7 +251,6 @@ const SidebarData = [
   {
     title: "HR",
     translation: "sidebar.HR.HR",
-    path: "hr/staff",
     icon: <GiIcons.GiHumanPyramid />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -286,7 +278,6 @@ const SidebarData = [
   {
     title: "Reservation",
     translation: "sidebar.Reservation.Reservation",
-    path: "reservation",
     icon: <FaIcons.FaUsers />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -314,7 +305,6 @@ const SidebarData = [
   {
     title: "Setting",
     translation: "sidebar.Setting.Setting",
-    path: "setting/us",
     icon: <AiIcons.AiFillSetting />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,

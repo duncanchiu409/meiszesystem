@@ -33,6 +33,8 @@ const Nav = styled.div`
   align-items: center;
   width: 100%
   position: fixed;
+  border: solid;
+  border-color: var(--sidebar-font-color);
 `;
 
 const LogoutButton = styled.div`
@@ -56,7 +58,7 @@ const SidebarNav = styled.div`
   // z-index: 10;
   flex-direction: colum;
 
-  overflow-y: auto;
+  overflow-y: hidden;
 `;
 
 const SidebarWrap = styled.div`
@@ -94,7 +96,7 @@ const Sidebar = () => {
     >
       <Nav>
         <div className="logo-container">
-          <IconButton style={{ paddingLeft: "20px", paddingRight: "20px", color: "var(--font-color)" }} onClick={() => { setMenu((prev) => !prev) }}>{
+          <IconButton style={{ paddingLeft: "20px", paddingRight: "20px", color: "var(--sidebar-font-color)" }} onClick={() => { setMenu((prev) => !prev) }}>{
             menu ? <MenuOutlinedIcon/> : <MenuOpenOutlinedIcon/>
           }</IconButton>
           <img
@@ -112,7 +114,7 @@ const Sidebar = () => {
         </div>
 
         <IconButton
-          style={{ marginRight: "20px", color: "var(--font-color)" }}
+          style={{ marginRight: "20px", color: "var(--sidebar-font-color)" }}
           onClick={() =>
             theme === "dark" ? setTheme("light") : setTheme("dark")
           }
@@ -165,7 +167,7 @@ const Sidebar = () => {
         </LogoutButton>
       </Nav>
       <div
-        className={ `${menu ? "hide-sidebar" : ""} content` }
+        className={ `${menu ? "hide-sidebar" : "open-sidebar"} content` }
       >
         <div style={{ width: "100%" }}>
           <SidebarNav>

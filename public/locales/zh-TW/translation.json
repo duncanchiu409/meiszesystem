@@ -271,6 +271,101 @@
         "Remark": "評論",
         "Action": "行動"
     },
+    "Purchase Service List": {
+        "Service": "服務",
+        "Plan": "計劃",
+        "Quantity": "數量",
+        "Start Day": "開始日",
+        "End Day": "結束日",
+        "Purchase By": "購買者"
+    },
+    "Inventory List": {
+        "Status": "狀態",
+        "Ref no": "參考編號",
+        "Date": "日期",
+        "Product": "產品",
+        "Quantity": "數量",
+        "Total Cost": "總金額",
+        "Remark": "備註"
+    },
+    "Purchase Order List": {
+        "Purchase Order no": "採購計畫編號",
+        "Date": "日期",
+        "Supplier": "供應商",
+        "Item": "產品",
+        "Quantity": "數量",
+        "Total Amount": "總金額",
+        "Status": "狀態"
+    },
+    "Purchase Budgeting List": {
+        "Purchase Planning no": "採購計畫編號",
+        "Date": "日期",
+        "Supplier": "供應商",
+        "Item": "物品",
+        "Quantity": "數量",
+        "Total Amount": "總金額",
+        "Status": "狀態"
+    },
+    "Purchase Planning List": {
+        "Purchase Planning no": "採購計畫編號",
+        "Date": "日期",
+        "Supplier": "供應商",
+        "Item": "物品",
+        "Quantity": "數量",
+        "Total Amount": "總金額",
+        "Status": "狀態"
+    },
+    "Shift Pattern List": {
+        "Shift": "輪班",
+        "Shift Pattern": "輪班模式"
+    },
+    "Salary And MPF Report": {
+        "Staff no": "員工編號",
+        "Staff Name": "員工姓名",
+        "Position": "員工職位",
+        "Month": "月份",
+        "Salary": "薪水",
+        "Commission": "傭金",
+        "MPF": "強積金",
+        "Salary After deduct MPF": "扣除強積金後的工資"
+    },
+    "Staff List": {
+        "Staff no": "員工編號",
+        "Staff Name": "員工姓名",
+        "Position": "員工職位",
+        "Permission": "許可",
+        "Date of entry": "加入日期",
+        "Mobile": "手機號碼",
+        "Salary": "薪水",
+        "Commission": "傭金" 
+    },
+    "Reservation List": {
+        "Date": "日期",
+        "Time": "時間",
+        "Client": "客戶",
+        "Service": "服務",
+        "Staff": "職員",
+        "Room": "房間",
+        "Site": "地點"
+    },
+    "User List": {
+        "User Name": "使用者名稱",
+        "Permission": "許可",
+        "Date of Join": "加入日期",
+        "Mobile": "手機號碼",
+        "Email": "電子郵件"
+    },
+    "Suppliers List": {
+        "Supplier": "供應商",
+        "Address": "地址",
+        "Contact Person": "聯絡人",
+        "Email": "電子郵件",
+        "Office Telephone": "辦公室電話",
+        "Mobile": "手機號碼"
+    },
+    "Share Drive": {
+        "Drop File Input": "檔案輸入"
+    },
     "Table Actions": {
         "actions": "行動",
         "delete": "刪除",

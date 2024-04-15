@@ -3,13 +3,15 @@ import { db } from "../../firebase";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "./AddEdit.css";
 import { ref, set, onValue } from "firebase/database";
-
+import { useTranslation } from "react-i18next";
 
 const UpdateService = () => {
   const [newName, setNewName] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [newRemark, setNewRemark] = useState("");
   const [Service, setService] = useState([]);
+  const { t } = useTranslation();
+  const [editingContainer, setEditingContainer] = useState(0);
 
   const { id } = useParams();
 
@@ -41,49 +43,70 @@ const UpdateService = () => {
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <h1>Edit Service </h1>
+      <div className="App">
+        <div className="container">
+          <h1>
+            {t("Table Actions.edit") +
+              " " +
+              t("sidebar.Service Management.Service")}
+          </h1>
 
-          <form
-            style={{
-              margin: "auto",
-              padding: "15px",
-              maxWidth: "400px",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
-            <input
-              className="input-add"
-              placeholder="Name..."
-              value={newName || ""}
-              onChange={(event) => {
-                setNewName(event.target.value);
-              }}
-            />
-            <input
-              className="input-add"
-              placeholder="Description..."
-              value={newDescription || ""}
-              onChange={(event) => {
-                setNewDescription(event.target.value);
-              }}
-            />
-            <input
-              className="input-add"
-              placeholder="Remark..."
-              value={newRemark || ""}
-              onChange={(event) => {
-                setNewRemark(event.target.value);
-              }}
-            />
-            
+          <form className="input-form">
+            <div
+              className={
+                (editingContainer === 1 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Service List.Service Name")}</label>
+              <input
+                className="input-add"
+                placeholder="Name..."
+                value={newName || ""}
+                onChange={(event) => {
+                  setNewName(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 1)}
+              />
+            </div>
 
-            <div className="text-center">
+            <div
+              className={
+                (editingContainer === 2 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Service List.Description")}</label>
+              <input
+                className="input-add"
+                placeholder="Description..."
+                value={newDescription || ""}
+                onChange={(event) => {
+                  setNewDescription(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 2)}
+              />
+            </div>
+
+            <div
+              className={
+                (editingContainer === 3 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Service List.Remark")}</label>
+              <input
+                className="input-add"
+                placeholder="Remark..."
+                value={newRemark || ""}
+                onChange={(event) => {
+                  setNewRemark(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 2)}
+              />
+            </div>
+
+            <div className="text-center" style={{ gridColumn: "1/3" }}>
               <button className="btn-create" onClick={createUser}>
                 Edit Service
               </button>

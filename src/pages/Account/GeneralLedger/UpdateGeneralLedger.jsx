@@ -7,6 +7,7 @@ import { Calendar } from "react-date-range";
 import format from "date-fns/format";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useTranslation } from "react-i18next";
 
 const UpdateGeneralLedger = () => {
   const [newAmount, setNewAmount] = useState(0);
@@ -16,6 +17,8 @@ const UpdateGeneralLedger = () => {
   const [GeneralLedger, setGeneralLedger] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
+  const { t } = useTranslation();
+  const [editingContainer, setEditingContainer] = useState(0);
 
   // open close
   const [open, setOpen] = useState(false);
@@ -96,30 +99,52 @@ const UpdateGeneralLedger = () => {
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <h1>Edit General Ledger </h1>
+      <div className="App">
+        <div className="container">
+          <h1>
+            {t("Table Actions.edit") +
+              " " +
+              t("sidebar.Account.General Ledger")}
+          </h1>
 
-          <form
-            style={{
-              margin: "auto",
-              padding: "15px",
-              maxWidth: "400px",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
-            <input
-              value={newDate}
-              readOnly
-              className="input-add"
-              onClick={() => setOpen((open) => !open)}
-            />
+          <form className="input-form">
+            <div
+              className={
+                (editingContainer === 1 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("General Ledger List.Date")}</label>
+              <input
+                value={newDate}
+                readOnly
+                className="input-add"
+                onClick={() => {
+                  setOpen((open) => !open);
+                  setEditingContainer(() => 1);
+                }}
+              />
+            </div>
 
-            <div ref={refOne}>
+            <div
+              className={
+                (editingContainer === 2 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">{t("Account Receivable List.Date")}</label>
+              <input
+                className="input-add"
+                placeholder="Description..."
+                value={newDescription || ""}
+                onChange={(event) => {
+                  setNewDescription(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 2)}
+              />
+            </div>
+
+            <div ref={refOne} className="input-calendar">
               {open && (
                 <Calendar
                   date={new Date()}
@@ -128,35 +153,52 @@ const UpdateGeneralLedger = () => {
                 />
               )}
             </div>
-            <input
-              className="input-add"
-              placeholder="Description..."
-              value={newDescription || ""}
-              onChange={(event) => {
-                setNewDescription(event.target.value);
-              }}
-            />
-            <select
-              value={newCOA}
-              className="input-add"
-              placeholder="Category Of Account..."
-              onChange={(event) => {
-                setNewCOA(event.target.value);
-              }}
+
+            <div
+              className={
+                (editingContainer === 3 ? "editing-input-container" : "") +
+                " input-container"
+              }
             >
-              <option>{"Asset"}</option>
-              <option>{"Liability"}</option>
-            </select>
-            <input
-              className="input-add"
-              type="number"
-              value={newAmount || ""}
-              placeholder="Amount..."
-              onChange={(event) => {
-                setNewAmount(event.target.value);
-              }}
-            />
-            <div className="text-center">
+              <label className="">
+                {t("Account Receivable List.Description")}
+              </label>
+              <select
+                value={newCOA}
+                className="input-add"
+                placeholder="Category Of Account..."
+                onChange={(event) => {
+                  setNewCOA(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 3)}
+              >
+                <option>{"Asset"}</option>
+                <option>{"Liability"}</option>
+              </select>
+            </div>
+
+            <div
+              className={
+                (editingContainer === 4 ? "editing-input-container" : "") +
+                " input-container"
+              }
+            >
+              <label className="">
+                {t("Account Receivable List.Description")}
+              </label>
+              <input
+                className="input-add"
+                type="number"
+                value={newAmount || ""}
+                placeholder="Amount..."
+                onChange={(event) => {
+                  setNewAmount(event.target.value);
+                }}
+                onClick={() => setEditingContainer(() => 4)}
+              />
+            </div>
+
+            <div className="text-center" style={{ gridColumn: "1/3" }}>
               <button className="btn-create" onClick={createUser}>
                 Edit General Ledger
               </button>

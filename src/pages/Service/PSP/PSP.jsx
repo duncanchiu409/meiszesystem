@@ -1,22 +1,80 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { db } from "../../../firebase";
 import { onValue, ref, remove } from "firebase/database";
 import { FaSearch } from "react-icons/fa";
 import "../../../App.css";
 import { useTranslation } from "react-i18next";
+import { Box } from "@mui/material";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 const PSP = () => {
   const [search, setSearch] = useState("");
   const [PSP, setPSP] = useState([]);
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const columns = [
+    {
+      field: "name",
+      headerName: t("Purchase Service List.Service"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "plan",
+      headerName: t("Purchase Service List.Plan"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "quantity",
+      headerName: t("Purchase Service List.Quantity"),
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "sd",
+      headerName: t("Purchase Service List.Start Day"),
+      flex: 1,
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "ed",
+      headerName: t("Purchase Service List.End Day"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "pb",
+      headerName: t("Purchase Service List.Purchase By"),
+      type: "number",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: t("Table Actions.actions"),
+      headerClassName: "custom-container-table-head",
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          onClick={() => {}}
+          label={t("Table Actions.delete")}
+        />,
+      ],
+    },
+  ];
 
   useEffect(() => {
     const getPSP = () => {
       onValue(ref(db, "PSP"), (snapshot) => {
         if (snapshot.val() !== null) {
-          setPSP({ ...snapshot.val() });
+          const obj = snapshot.val();
+          setPSP(() =>
+            Object.keys(obj).map((key) => ({ id: key, ...obj[key] }))
+          );
         }
       });
     };
@@ -28,36 +86,54 @@ const PSP = () => {
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div style={{ padding: "0px 215px" }} className="container">
-          <div className="input-wrapper">
-            <FaSearch id="search-icon" />
-            <input
-              type="text"
-              className="inputField"
-              placeholder="Search Service"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
+      <div className="App">
+        <div className="container">
+          <div className="text-end">
+            <h1>{t("table.Purchase Service List")}</h1>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className="input-wrapper">
+                <FaSearch id="search-icon" />
+                <input
+                  type="text"
+                  className="inputField"
+                  placeholder="Search Service"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                />
+              </div>
+              <NavLink to="add" className="btn-create">
+                {t("Excel.Create")}
+              </NavLink>
+              <DownloadTableExcel
+                filename="Purchase Service table"
+                sheet="Purchase Service"
+                currentTableRef={tableRef.current}
+              >
+                <button className="btn-create">
+                  {" "}
+                  {t("Excel.Export Excel")}{" "}
+                </button>
+              </DownloadTableExcel>
+            </div>
           </div>
 
-          <div className="text-end">
-            <h1>{t('table.Purchase Service List')}</h1>
-            <NavLink to="add" className="btn-create">
-              {t('Excel.Create')}
-            </NavLink>
-            <DownloadTableExcel
-              filename="Purchase Service table"
-              sheet="Purchase Service"
-              currentTableRef={tableRef.current}
-            >
-              <button className="btn-create"> {t('Excel.Export Excel')} </button>
-            </DownloadTableExcel>
+          {/* div wtih .custom-container to override the bootstrap css */}
+          <div className="custom-container">
+            <Box sx={{ mt: 1, color: "white" }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400, color: "var(--sidebar-font-color)" }}
+                rows={PSP}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
           </div>
-          <table className="styled-table" ref={tableRef}>
+
+          <table className="styled-table" ref={tableRef} style={{ display: 'none' }}>
             <thead>
               <tr>
                 <th style={{ textAlign: "center" }}>Service</th>

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
-.dark{
+.dark {
   --primary-color: #0b0c28;
   --secondary-color: #181b3a;
   --font-color: #f5f5f5;
@@ -9,7 +9,7 @@
   --sidebar-font-color: #e1e9fc;
 }
 
-.light{
+.light {
   --secondary-color: #b9ffcf;
   --primary-color: #e9f1ec;
   --font-color: black;
@@ -22,7 +22,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Lato", sans-serif;
 }
 
 .home,

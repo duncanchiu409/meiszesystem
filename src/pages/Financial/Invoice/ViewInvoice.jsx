@@ -24,9 +24,8 @@ const ViewInvoice = () => {
     <div className="main">
       <div
         className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
       >
-        <div style={{ padding: "0px 450px" }} className="container">
+        <div className="container">
           <div className="card-header">
             <h1>Invoice #{Invoice.no}</h1>
           </div>

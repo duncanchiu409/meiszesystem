@@ -1,16 +1,18 @@
 import "../../App.css";
 import DropFileInput from "../../components/drop-file-input/DropFileInput";
-import { useState} from "react";
-import { ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
+import { useState } from "react";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, database } from "../../firebase";
 
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
+import i18n from '../../i18n'
 
 const ShareDrive = () => {
   const [file, setFile] = useState(null);
   const [progressBar, setProgressBar] = useState(0);
   // const [imageUrls, setImageUrls] = useState([]);
-
+  const { t } = useTranslation()
 
   const onFileChange = (files) => {
     const currentFile = files[0];
@@ -19,17 +21,19 @@ const ShareDrive = () => {
   };
 
   const uploadToDatabase = (url) => {
-      let docData = {
-          mostRecentUploadURL: url,
-          username: "jasondubon"
-      }
-      const userRef = doc(database, "users", docData.username)
-      setDoc(userRef, docData, {merge: true}).then(() => {
-          console.log("successfully updated DB")
-      }).catch((error) => {
-          console.log("errrror")
+    let docData = {
+      mostRecentUploadURL: url,
+      username: "jasondubon",
+    };
+    const userRef = doc(database, "users", docData.username);
+    setDoc(userRef, docData, { merge: true })
+      .then(() => {
+        console.log("successfully updated DB");
       })
-  }
+      .catch((error) => {
+        console.log("errrror");
+      });
+  };
 
   const handleClick = () => {
     if (file === null) return;
@@ -48,7 +52,7 @@ const ShareDrive = () => {
       () => {
         console.log("success!!");
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          uploadToDatabase(downloadURL)
+          uploadToDatabase(downloadURL);
           console.log(downloadURL);
         });
       }
@@ -67,49 +71,41 @@ const ShareDrive = () => {
 
   return (
     <div className="main">
-      <div
-        className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
-      >
-        <div
-          style={{ width: "100%", padding: "0px 430px", height: "100%" }}
-          className="container"
-        >
-          
-            <h2 className="header">React drop files input</h2>
-            <br></br>
-            <DropFileInput onFileChange={(files) => onFileChange(files)} />
+      <div className="App">
+        <div className="container">
+          <h2 className="header">{t("Share Drive.Drop File Input")}</h2>
+          <br></br>
+          <DropFileInput onFileChange={(files) => onFileChange(files)} />
 
-            <br></br>
-            <div className="progressMain">
-              <progress
-                className="progress progress-accent w-56"
-                value={progressBar}
-                max="100"
-              ></progress>
-            </div>
-            <br></br>
-            <button className="btn-create" onClick={() => handleClick()}>
-              {" "}
-              Upload
-            </button>
-            <br></br>
-            {/* {
+          <br></br>
+          {/* <div className="progressMain">
+            <progress
+              className="progress progress-accent w-56"
+              value={progressBar}
+              max="100"
+            ></progress>
+          </div> */}
+          <br></br>
+          <button className="btn-create" onClick={() => handleClick()}>
+            {" "}
+            Upload
+          </button>
+          <label htmlFor='file'>Upload File</label>
+          <input type="file" id="file" onChange={(e) => console.log(e.target.files[0] ? e.target.files[0] : "No File Chosen")} hidden/>
+          <br></br>
+          {/* {
                     imageUrls.map(dataVal=><div>
                         <img src={dataVal} height="200px" width="200px" />
                         <br/> 
                     </div>)
                 } */}
-            
-          </div>
         </div>
       </div>
-    
+    </div>
   );
 };
 
 export default ShareDrive;
-
 
 // import { RiArrowDownSFill } from "react-icons/ri";
 // import { FaList } from "react-icons/fa";
@@ -120,7 +116,6 @@ export default ShareDrive;
 // import styled from 'styled-components';
 // import { useEffect, useState } from 'react';
 // import { database } from '../../firebase';
-
 
 // const DataContainer = styled.div`
 //     flex: 1 1;
@@ -209,7 +204,7 @@ export default ShareDrive;
 //         const i = Math.floor(Math.log(bytes) / Math.log(k));
 //         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 //     }
-    
+
 //     return (
 //         <DataContainer>
 //             <DataHeader>
