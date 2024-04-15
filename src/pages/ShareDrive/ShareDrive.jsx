@@ -3,16 +3,28 @@ import DropFileInput from "../../components/drop-file-input/DropFileInput";
 import { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, database } from "../../firebase";
-
+import { DataGrid } from "@mui/x-data-grid";
+import { Box, Dialog, DialogTitle } from "@mui/material";
 import { doc, setDoc } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
-import i18n from '../../i18n'
+import i18n from "../../i18n";
+
+const files = [
+  {
+    id: 1,
+    filename: "pikachiu",
+    type: "png",
+    size: "3500kb",
+    ud: "01-45-2024",
+  },
+];
 
 const ShareDrive = () => {
   const [file, setFile] = useState(null);
   const [progressBar, setProgressBar] = useState(0);
+  const [openDialog, setOpenDialog] = useState(false);
   // const [imageUrls, setImageUrls] = useState([]);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const onFileChange = (files) => {
     const currentFile = files[0];
@@ -59,6 +71,37 @@ const ShareDrive = () => {
     );
   };
 
+  const handleDialogClose = () => {
+    setOpenDialog((prev) => false);
+  };
+
+  const columns = [
+    {
+      field: "filename",
+      flex: 1,
+      headerName: "File",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "size",
+      flex: 0.5,
+      headerName: "Size",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "type",
+      flex: 0.5,
+      headerName: "Type",
+      headerClassName: "custom-container-table-head",
+    },
+    {
+      field: "ud",
+      flex: 0.5,
+      headerName: "Upload Date",
+      headerClassName: "custom-container-table-head",
+    },
+  ];
+
   // useEffect(() => {
   //   listAll(ref(storage, "common/")).then((response) => {
   //     response.items.forEach((item) => {
@@ -74,25 +117,44 @@ const ShareDrive = () => {
       <div className="App">
         <div className="container">
           <h2 className="header">{t("Share Drive.Drop File Input")}</h2>
-          <br></br>
-          <DropFileInput onFileChange={(files) => onFileChange(files)} />
+          <div style={{ display: 'flex', flexDirection: 'row-reverse', gap: '10px', alignItems: 'center' }}>
+            <label className="file-upload-btn">Submit File</label>
+            <input
+              type="file"
+              id="file"
+              onChange={(e) => {
+                setFile(e.target.files[0]);
+              }}
+              hidden
+            />
+            <label className="file-upload-btn" htmlFor="file">Upload File</label>
+            <label>{file ? file.name : "No File Chosen"}</label>
+            <label>You have uploaded:</label>
+          </div>
 
-          <br></br>
-          {/* <div className="progressMain">
-            <progress
-              className="progress progress-accent w-56"
-              value={progressBar}
-              max="100"
-            ></progress>
-          </div> */}
-          <br></br>
-          <button className="btn-create" onClick={() => handleClick()}>
-            {" "}
-            Upload
-          </button>
-          <label htmlFor='file'>Upload File</label>
-          <input type="file" id="file" onChange={(e) => console.log(e.target.files[0] ? e.target.files[0] : "No File Chosen")} hidden/>
-          <br></br>
+          {/* <Dialog open={openDialog} onClose={handleDialogClose} fullWidth maxWidth='sm'>
+            <DialogTitle>Upload File</DialogTitle>
+            <Box display="flex" flexDirection="row-end" sx={{ m: '20px' }} >
+              <button>Upload</button>
+              <button onClick={handleDialogClose}>Cancel</button>
+            </Box>
+          </Dialog> */}
+
+          <div className="custom-container">
+            <Box sx={{ mt: 1, color: "white" }}>
+              <DataGrid
+                autoHeight
+                sx={{ minHeight: 400, color: "var(--sidebar-font-color)" }}
+                rows={files}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { page: 0, pageSize: 5 } },
+                }}
+                pageSizeOptions={[5, 10]}
+              />
+            </Box>
+          </div>
+
           {/* {
                     imageUrls.map(dataVal=><div>
                         <img src={dataVal} height="200px" width="200px" />

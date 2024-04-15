@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=Noto+Serif+TC&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=Noto+Serif+TC&display=swap");
 
 /* :root {
   --primary-color: #181b3a;
@@ -178,7 +178,7 @@ a {
   }
 }
 
-.input-container{
+.input-container {
   display: grid;
   padding: 0 20px;
   padding-bottom: 10px;
@@ -186,54 +186,54 @@ a {
   margin-bottom: 15px;
 }
 
-.no-cursor{
+.no-cursor {
   cursor: none;
 }
 
-.input-calendar{
+.input-calendar {
   margin: 0 auto;
 }
 
-.container .calendar{
+.container .calendar {
   margin: 20px 50px;
- background-color: var(--calendar-color-bg);
+  background-color: var(--calendar-color-bg);
 }
 
-.container .calendar a{
+.container .calendar a {
   text-decoration: none !important;
   color: var(--sidebar-font-color);
 }
 
-.container .calendar a:hover{
+.container .calendar a:hover {
   cursor: pointer !important;
 }
 
-.container .calendar .fc .fc-daygrid-day-top{
+.container .calendar .fc .fc-daygrid-day-top {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container .calendar .fc .fc-daygrid-dot-event:hover,.fc-daygrid-more-link:hover{
+.container .calendar .fc .fc-daygrid-dot-event:hover,
+.fc-daygrid-more-link:hover {
   background-color: var(--secondary-color) !important;
 }
 
-.container .calendar .fc .fc-daygrid-day-events{
+.container .calendar .fc .fc-daygrid-day-events {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-
-.container .calendar .fc .fc-daygrid-dot-event{
+.container .calendar .fc .fc-daygrid-dot-event {
   align-items: center;
 }
 
-.container .calendar .fc .fc-popover{
+.container .calendar .fc .fc-popover {
   background-color: var(--primary-color);
 }
 
-.container .calendar .fc .fc-button-primary:focus{
+.container .calendar .fc .fc-button-primary:focus {
   box-shadow: none;
 }
 
@@ -245,14 +245,27 @@ a {
   background-color: green;
 } */
 
-.input-container label{
+.file-upload-btn:hover {
+  cursor: pointer;
+  color: var(--hover-color);
+  transition-delay: 0.1s;
+  transition-timing-function: ease-in-out;
+}
+
+.file-upload-btn {
+  border: solid 1px var(--sidebar-font-color);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.input-container label {
   font-size: x-large;
   display: flex;
   justify-content: left;
   align-items: center;
 }
 
-.editing-input-container{
+.editing-input-container {
   border: solid 3px;
   animation-name: container-animation;
   animation-duration: 2s;
@@ -308,7 +321,9 @@ a {
 }
 
 .custom-container {
-  div,input,svg{
+  div,
+  input,
+  svg {
     color: var(--sidebar-font-color);
   }
 }
@@ -526,7 +541,7 @@ input:focus {
   cursor: text;
 }
 
-.cursor{
+.cursor {
   background-color: "transparent";
   border: solid;
   height: 30px;
