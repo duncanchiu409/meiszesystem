@@ -6,6 +6,7 @@ import { storage, database } from "../../firebase";
 
 import { doc, setDoc } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
+import i18n from '../../i18n'
 
 const ShareDrive = () => {
   const [file, setFile] = useState(null);
@@ -89,6 +90,8 @@ const ShareDrive = () => {
             {" "}
             Upload
           </button>
+          <label htmlFor='file'>Upload File</label>
+          <input type="file" id="file" onChange={(e) => console.log(e.target.files[0] ? e.target.files[0] : "No File Chosen")} hidden/>
           <br></br>
           {/* {
                     imageUrls.map(dataVal=><div>

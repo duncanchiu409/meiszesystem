@@ -58,7 +58,7 @@ const SidebarNav = styled.div`
   // z-index: 10;
   flex-direction: colum;
 
-  overflow-y: auto;
+  overflow-y: hidden;
 `;
 
 const SidebarWrap = styled.div`

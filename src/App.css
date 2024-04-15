@@ -25,6 +25,7 @@
     --drop-down-link-color: #414757;
     --sidebar-font-color: #e1e9fc;
     --table-color-primary: #0b0c28;
+    --calendar-color-bg: #0b0c28;
   }
 }
 
@@ -37,6 +38,7 @@
     --drop-down-link-color: #d9dce6;
     --sidebar-font-color: #009879;
     --table-color-primary: white;
+    --calendar-color-bg: white;
   }
 }
 
@@ -48,6 +50,7 @@
   --drop-down-link-color: #414757;
   --sidebar-font-color: #e1e9fc;
   --table-color-primary: #0b0c28;
+  --calendar-color-bg: #0b0c28;
 }
 
 .light {
@@ -58,6 +61,7 @@
   --drop-down-link-color: #d9dce6;
   --sidebar-font-color: #009879;
   --table-color-primary: white;
+  --calendar-color-bg: white;
 }
 
 html,
@@ -190,6 +194,57 @@ a {
   margin: 0 auto;
 }
 
+.container .calendar{
+  margin: 20px 50px;
+ background-color: var(--calendar-color-bg);
+}
+
+.container .calendar a{
+  text-decoration: none !important;
+  color: var(--sidebar-font-color);
+}
+
+.container .calendar a:hover{
+  cursor: pointer !important;
+}
+
+.container .calendar .fc .fc-daygrid-day-top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .calendar .fc .fc-daygrid-dot-event:hover,.fc-daygrid-more-link:hover{
+  background-color: var(--secondary-color) !important;
+}
+
+.container .calendar .fc .fc-daygrid-day-events{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.container .calendar .fc .fc-daygrid-dot-event{
+  align-items: center;
+}
+
+.container .calendar .fc .fc-popover{
+  background-color: var(--primary-color);
+}
+
+.container .calendar .fc .fc-button-primary:focus{
+  box-shadow: none;
+}
+
+/* .container .calendar .fc-theme-standard td{
+  border: none;
+} */
+
+/* .container .calendar .fc-day-today{
+  background-color: green;
+} */
+
 .input-container label{
   font-size: x-large;
   display: flex;
@@ -206,8 +261,8 @@ a {
 
 .hide-sidebar {
   grid-template-columns: 0% 1fr;
-  /* animation-name: close-sidebar;
-  animation-duration: 1s; */
+  animation-name: close-sidebar;
+  animation-duration: 1s;
 }
 
 @keyframes open-sidebar {
@@ -223,8 +278,8 @@ a {
 
 .open-sidebar {
   grid-template-columns: 20% 1fr;
-  /* animation-name: open-sidebar;
-  animation-duration: 3s; */
+  animation-name: open-sidebar;
+  animation-duration: 3s;
 }
 
 .container {
