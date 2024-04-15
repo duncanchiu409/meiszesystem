@@ -3,6 +3,8 @@ import { db } from "../../../firebase";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "./AddEdit.css";
 import { ref, set, onValue } from "firebase/database";
+import { Formik } from "formik";
+import * as yup from 'yup'
 
 const UpdateCI = () => {
   const [newName, setNewName] = useState("");
@@ -39,15 +41,28 @@ const UpdateCI = () => {
     setNewTelephone(staff.tel);
     setNewAbout(staff.about);
   }, [id, staff.name, staff.address, staff.tel, staff.about]);
+  
+  const phoneRegExp =
+  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+
+  const checkoutSchema = yup.object().shape({
+    name: yup.string().required("Required"),
+    address: yup.string().required("Required"),
+    telephone: yup.string().matches(phoneRegExp, "Phone Number is not valid").required("Required"),
+    about: yup.string().required("Required")
+  })
 
   return (
     <div className="main">
       <div
         className="App"
-        style={{ width: "100%", padding: "100px", height: "1000px" }}
       >
-        <div style={{ padding: "0px 215px" }} className="container">
+        <div className="container">
           <h1>Edit User</h1>
+          
+          {/* <Formik initialValues={ini} onSubmit={() => console.log("Submitted")} validationSchema={checkoutSchema}>
+          
+          </Formik> */}
 
           <form
             style={{

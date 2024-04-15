@@ -305,6 +305,16 @@ a {
   border: 3px solid var(--sidebar-font-color);
 }
 
+.login-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  padding-bottom: 60px;
+  color: white;
+  background-color: #0b0c28;
+  border: 3px solid white;
+}
+
 .custom-container-table-head {
   font-weight: bolder;
   background-color: var(--secondary-color);

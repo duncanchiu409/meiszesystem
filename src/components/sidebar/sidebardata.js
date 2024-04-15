@@ -303,6 +303,33 @@ const SidebarData = [
     icon: <FaIcons.FaUsers />,
   },
   {
+    title: "Coupon",
+    translation: "sidebar.Coupon.Coupon",
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+    icon: <BiIcons.BiSolidPurchaseTagAlt />,
+    subNav: [
+      {
+        title: "Coupon Store",
+        path: "coupon/couponstore",
+        translation: "sidebar.Coupon.Coupon Store",
+        icon: <FaIcons.FaStore />,
+      },
+      {
+        title: "Record",
+        path: "coupon/record",
+        translation: "sidebar.Coupon.Record",
+        icon: <FaIcons.FaHistory />,
+      },
+      {
+        title: "Store Setting",
+        path: "coupon/storesetting",
+        translation: "sidebar.Coupon.Store Setting",
+        icon: <AiIcons.AiFillSetting />,
+      },
+    ],
+  },
+  {
     title: "Setting",
     translation: "sidebar.Setting.Setting",
     icon: <AiIcons.AiFillSetting />,

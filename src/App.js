@@ -110,6 +110,10 @@ import UpdateMember from "./pages/Customer/Member/UpdateMember";
 import ClientsAnalysis from "./pages/Customer/ClientsAnalysis";
 import i18n from "./i18n";
 
+import CouponStore from './pages/Coupon/CouponStore'
+import Record from './pages/Coupon/Record'
+import StoreSetting from './pages/Coupon/StoreSetting'
+
 function App() {
   return (
       <BrowserRouter>
@@ -356,6 +360,10 @@ function App() {
             <Route path="sharedrive" element={<ShareDrive />} />
 
             <Route path="calender" element={<Calender />} />
+
+            <Route path="coupon/couponstore" element={<CouponStore />} />
+            <Route path="coupon/record" element={<Record />} />
+            <Route path="coupon/storesetting" element={<StoreSetting />} />
 
             <Route path="setting/us" element={<User />} />
             <Route path="setting/us/add" element={<AddEditUser />} />

@@ -74,6 +74,12 @@
             "Setting": "Setting",
             "User Setting": "User Setting",
             "Company Information": "Company Information"
+        },
+        "Coupon": {
+            "Coupon": "Coupon",
+            "Coupon Store": "Coupon Store",
+            "Record": "Record",
+            "Store Setting": "Store Setting"
         }
     },
     "Excel": {
@@ -114,7 +120,10 @@
         "Shift Pattern List": "Shift Pattern List",
         "Resevation List": "Reservation List",
         "User List": "User List",
-        "Advance Invoice List": "Advance Invoice List"
+        "Advance Invoice List": "Advance Invoice List",
+        "Coupon Store": "Coupon Store",
+        "Record List": "Record List",
+        "Store Setting": "Store Setting"
     },
     "Invoice List":{
         "Invoice no": "Invoice no.",

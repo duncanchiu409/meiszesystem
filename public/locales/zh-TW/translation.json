@@ -74,6 +74,12 @@
             "Setting": "設定",
             "User Setting": "使用者設定",
             "Company Information": "公司資訊"
+        },
+        "Coupon": {
+            "Coupon": "優惠券",
+            "Coupon Store": "優惠券店",
+            "Record": "記錄",
+            "Store Setting": "店鋪設置"
         }
     },
     "Excel": {
@@ -114,7 +120,10 @@
         "Shift Pattern List": "班次模式列表",
         "Resevation List": "預訂清單",
         "User List": "使用者列表",
-        "Advance Invoice List": "預付發票清單"
+        "Advance Invoice List": "預付發票清單",
+        "Coupon Store": "優惠券店",
+        "Record List": "記錄清單",
+        "Store Setting": "店鋪設置"
     },
     "Invoice List":{
         "Invoice no": "發票號碼",
